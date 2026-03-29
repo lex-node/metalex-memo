@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MetaLeX Labs — Investment Memorandum</title>
+<meta name="description" content="The infrastructure for natively tokenized corporate securities. Seed round led by Cyber.Fund.">
+<meta property="og:title" content="MetaLeX Labs — Investment Memorandum">
+<meta property="og:description" content="The infrastructure for natively tokenized corporate securities. Seed round led by Cyber.Fund.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lex-node.github.io/metalex-memo/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MetaLeX Labs — Investment Memorandum">
+<meta name="twitter:description" content="The infrastructure for natively tokenized corporate securities. Seed round led by Cyber.Fund.">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -114,7 +122,7 @@
 
   .section-title { flex: 1; }
 
-  h2 { font-size: 18px; font-weight: 700; color: var(--neon); margin: 28px 0 10px; }
+
   h3 { font-size: 15px; font-weight: 700; color: var(--bright); margin: 20px 0 8px; }
   p { margin-bottom: 12px; text-align: justify; hyphens: auto; }
   ul, ol { margin: 0 0 12px 22px; }
@@ -147,6 +155,124 @@
   }
   .disclaimer p { margin: 0; font-size: 13px; text-align: center; }
 
+
+  /* H2 left accent border */
+  h2 {
+    font-size: 18px; font-weight: 700; color: var(--neon);
+    margin: 28px 0 10px;
+    padding-left: 14px;
+    border-left: 3px solid var(--neon);
+  }
+
+  /* Callout card for key subsections */
+  .callout {
+    background: var(--bg-card);
+    border: 1px solid var(--neon-border);
+    border-left: 3px solid var(--neon);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin: 18px 0;
+  }
+  .callout h2 { margin-top: 0; border-left: none; padding-left: 0; }
+
+  /* At a Glance card */
+  .card-table {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px;
+    margin: 18px 0;
+    overflow: hidden;
+  }
+  .card-table table { margin: 0; }
+  .card-table td:first-child { font-weight: 600; color: var(--text-mid); white-space: nowrap; }
+
+  /* Metrics grid */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 18px 0;
+  }
+  .metric {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+  .metric .num {
+    font-size: 28px; font-weight: 800; color: var(--neon);
+    line-height: 1.1; margin-bottom: 4px; letter-spacing: -0.5px;
+  }
+  .metric .lbl {
+    font-size: 11px; font-weight: 600; color: var(--text-light);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+
+  /* Closing argument style (Why Now) */
+  .closing p > strong:first-child {
+    color: var(--neon); font-size: 16px;
+  }
+  .closing > p {
+    padding-left: 14px;
+    border-left: 2px solid rgba(218, 255, 0, 0.2);
+    margin-bottom: 18px;
+  }
+
+  /* FAQ sub-accordion */
+  details.faq-item {
+    margin-bottom: 4px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg-card);
+  }
+  details.faq-item[open] {
+    border-color: var(--neon-border);
+    background: var(--bg-alt);
+  }
+  details.faq-item summary {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px;
+    cursor: pointer; list-style: none;
+    font-size: 14px; font-weight: 600; color: var(--bright);
+    user-select: none;
+  }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  details.faq-item summary::marker { display: none; content: ""; }
+  details.faq-item summary:hover { color: var(--neon); }
+  details.faq-item .faq-body {
+    padding: 4px 16px 16px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+  }
+  details.faq-item .faq-chevron {
+    width: 14px; height: 14px; flex-shrink: 0; margin-left: 10px;
+    position: relative;
+  }
+  details.faq-item .faq-chevron::before, details.faq-item .faq-chevron::after {
+    content: ''; position: absolute;
+    width: 6px; height: 1.5px; background: var(--text-light);
+    top: 50%; border-radius: 1px;
+    transition: transform 0.2s ease;
+  }
+  details.faq-item .faq-chevron::before { left: 1px; transform: rotate(45deg); }
+  details.faq-item .faq-chevron::after { right: 1px; transform: rotate(-45deg); }
+  details.faq-item[open] .faq-chevron::before { transform: rotate(-45deg); }
+  details.faq-item[open] .faq-chevron::after { transform: rotate(45deg); }
+
+  /* Mobile table scroll wrapper */
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 14px 0 18px; }
+  .table-scroll table { margin: 0; min-width: 580px; }
+
+  /* Back to top */
+  .back-to-top {
+    display: block; text-align: center; padding: 20px;
+    font-size: 13px; font-weight: 600; color: var(--text-light);
+    text-decoration: none; letter-spacing: 0.5px;
+  }
+  .back-to-top:hover { color: var(--neon); text-decoration: none; }
+
   @media print {
     details.section { border: none; }
     details.section[open] { background: none; }
@@ -161,11 +287,19 @@
 
   @media (max-width: 700px) {
     .cover .title { font-size: 32px; }
+    .cover { padding: 60px 20px 40px; }
     .accordion-container { padding: 16px 12px 60px; }
     details.section summary { padding: 14px 16px; font-size: 15px; }
     .section-body { padding: 4px 16px 18px; }
     table { font-size: 11px; }
     th, td { padding: 6px 8px; }
+    .metrics-grid { grid-template-columns: 1fr; }
+    .callout { padding: 14px 16px; }
+    h2 { font-size: 16px; }
+    svg { max-width: 100% !important; height: auto !important; }
+  }
+  @media (min-width: 701px) and (max-width: 960px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
@@ -215,6 +349,7 @@ constitutive instruments where the smart contract system IS the stock
 ledger designated in the corporation’s governing documents under
 Delaware General Corporation Law §224.</p>
 <p><strong>At a Glance</strong></p>
+<div class="card-table">
 <table>
 <colgroup>
 <col style="width: 33%" />
@@ -263,6 +398,7 @@ Delaware General Corporation Law §224.</p>
 </tr>
 </tbody>
 </table>
+</div>
 
     </div>
   </details>
@@ -648,6 +784,7 @@ know what they are. An ERC-3643 token knows that certain addresses are
 permitted to hold it—but not what it represents, what entity issued it,
 what documents govern it, or what series terms define its economic
 rights. We start from corporate law and build outward to the token.</p>
+<div class="table-scroll">
 <table>
 <colgroup>
 <col style="width: 19%" />
@@ -716,6 +853,7 @@ rights. We start from corporate law and build outward to the token.</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>The combined market influence of these competitors is massive—$910M
 AUM at Superstate, billions administered by Securitize, $6T+ in
 tokenized assets on Canton, $645M on Plume, $28B+ under ERC-3643. But
@@ -1199,7 +1337,7 @@ commitment</p></li>
 
   <details class="section">
     <summary><span class="section-title">11. Why Now, Why Us</span><span class="chevron"></span></summary>
-    <div class="section-body">
+    <div class="section-body closing">
 
 <p><strong>The market is moving.</strong> Tokenized RWAs have grown 245x
 in five years. BCG, Ripple, Citigroup, and Standard Chartered all
@@ -1245,7 +1383,10 @@ and the product is how we intend to operate.</p>
 
 <p><em>We hear smart, skeptical questions regularly. Here are the ones
 that come up most often, and our honest answers.</em></p>
-<h2 id="s50--hasn-t-this-been-tried-before-security-token-offerings-fail">“Hasn’t this been tried before? Security token offerings failed in 2017–2019.”</h2>
+<details class="faq-item">
+  <summary><span>“Hasn’t this been tried before? Security token offerings failed in 2017–2019.”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+
 <p>Yes, and for a specific reason: the first generation of security
 token projects started from the token and tried to retrofit legal
 compliance. They produced tokens that carried no legal content—no issuer
@@ -1259,7 +1400,12 @@ second. The CyberCorps protocol doesn’t add a blockchain layer on top of
 the existing intermediary chain; it replaces the intermediary chain by
 making the blockchain the legally authoritative stock ledger. That’s a
 different product, not a retry of the old one.</p>
-<h2 id="s51--securitize-has-billions-in-aum-and-institutional-relationsh">“Securitize has billions in AUM and institutional relationships with BlackRock. How do you compete with that?”</h2>
+  </div>
+</details>
+<details class="faq-item">
+  <summary><span>“Securitize has billions in AUM and institutional relationships with BlackRock. How do you compete with that?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+
 <p>We don’t compete for the same customers, at least not yet. Securitize
 serves institutional fund products (like BlackRock’s BUIDL) where the
 existing custody and transfer agent infrastructure is a feature, not a
@@ -1276,7 +1422,12 @@ new DeFi protocol that wants to interact with a Securitize token must be
 individually approved by the transfer agent. That approval bottleneck
 scales linearly with ecosystem adoption. Our architecture eliminates
 it.</p>
-<h2 id="s52--doesn-t-putting-stockholder-names-on-a-public-blockchain-cr">“Doesn’t putting stockholder names on a public blockchain create a privacy disaster?”</h2>
+  </div>
+</details>
+<details class="faq-item">
+  <summary><span>“Doesn’t putting stockholder names on a public blockchain create a privacy disaster?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+
 <p>This is a real design consideration, and we’ve addressed it at
 multiple layers. First, the offchain PII requirement is an architectural
 choice, not a regulatory mandate. Transfer agent law does not require
@@ -1298,7 +1449,12 @@ complete ownership graph, and reconstructing it requires the cooperation
 of every participant node—which is just the existing
 intermediary-mediated inspection process on more expensive
 infrastructure.</p>
-<h2 id="s53--what-if-there-s-a-smart-contract-bug-the-stock-ledger-gets-">“What if there’s a smart contract bug? The stock ledger gets corrupted and you have a legal crisis.”</h2>
+  </div>
+</details>
+<details class="faq-item">
+  <summary><span>“What if there’s a smart contract bug? The stock ledger gets corrupted and you have a legal crisis.”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+
 <p>This is exactly what our Material Adverse Exception Events (MAEE)
 framework addresses, and no competing standard has anything equivalent.
 The CyberCorps bylaws explicitly define consensus attacks, contentious
@@ -1314,7 +1470,12 @@ controller operations—those handle the same scenario mechanically (stop
 transfers) but without any corresponding legal framework defining what
 happens next. They freeze the contract but leave the legal consequences
 undefined.</p>
-<h2 id="s54--compliance-obligations-require-intermediaries-you-can-t-jus">“Compliance obligations require intermediaries. You can’t just encode compliance in a smart contract and call it done.”</h2>
+  </div>
+</details>
+<details class="faq-item">
+  <summary><span>“Compliance obligations require intermediaries. You can’t just encode compliance in a smart contract and call it done.”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+
 <p>We agree completely, and this is actually one of our central
 arguments against the competing standards, not against us. Compliance
 obligations attach to regulated persons and entities (broker-dealers,
@@ -1334,7 +1495,12 @@ restrictions themselves, implemented by the smart contract rejecting
 noncompliant transactions, because the smart contract IS the stock
 ledger and rejecting the transaction IS the issuer’s refusal to register
 the transfer.</p>
-<h2 id="s55--isn-t-metalex-just-becoming-the-new-intermediary">“Isn’t MetaLeX just becoming the new intermediary?”</h2>
+  </div>
+</details>
+<details class="faq-item">
+  <summary><span>“Isn’t MetaLeX just becoming the new intermediary?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+
 <p>This is probably the most important architectural question, and we’ve
 designed specifically against it. The co-approval upgrade model is the
 key: we publish new contract implementations, but each issuer (each
@@ -1350,7 +1516,12 @@ and investors don’t need to trust MetaLeX with ongoing control over
 their securities), and for the “walkaway test”: if MetaLeX disappeared
 tomorrow, every cyberCORP and its securities would continue to function
 on the blockchain. No vendor lock-in.</p>
-<h2 id="s56--doesn-t-the-erc-721-model-mean-every-stock-transfer-is-an-n">“Doesn’t the ERC-721 model mean every stock transfer is an NFT trade? That’s terrible UX for liquid securities.”</h2>
+  </div>
+</details>
+<details class="faq-item">
+  <summary><span>“Doesn’t the ERC-721 model mean every stock transfer is an NFT trade? That’s terrible UX for liquid securities.”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+
 <p>This is what cyberSCRIPs solve. The dual-token model separates the
 legal record (ERC-721 cyberCERTs for the stock ledger) from the liquid
 composable layer (ERC-20 cyberSCRIPs for DeFi and trading). A
@@ -1364,7 +1535,12 @@ metadata; the cyberSCRIP layer provides liquidity and composability. No
 other standard offers both. Competing standards offer only fungible
 tokens (which lack metadata) or only NFTs (which lack liquidity). We
 solved the tradeoff.</p>
-<h2 id="s57--this-only-works-for-delaware-corporations-what-about-other-">“This only works for Delaware corporations. What about other jurisdictions?”</h2>
+  </div>
+</details>
+<details class="faq-item">
+  <summary><span>“This only works for Delaware corporations. What about other jurisdictions?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+
 <p>Delaware is the right starting point: it governs over 65% of Fortune
 500 companies, the vast majority of venture-backed startups, and has the
 most developed body of corporate law and case law in the United States.
@@ -1394,7 +1570,12 @@ cyberRaise customer, and those communities bring their own distribution.
 We don’t need to compete for BlackRock; we need to win the crypto-native
 private market, which is underserved, growing, and architecturally
 aligned with everything we’ve built.</p>
-<h2 id="s58--what-happens-when-the-sec-decides-that-onchain-stock-ledger">“What happens when the SEC decides that onchain stock ledgers need specific regulatory treatment?”</h2>
+  </div>
+</details>
+<details class="faq-item">
+  <summary><span>“What happens when the SEC decides that onchain stock ledgers need specific regulatory treatment?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+
 <p>We welcome it. The SEC’s January 2026 joint staff statement already
 validates our model by distinguishing issuer-sponsored tokenization from
 third-party models and emphasizing that economic substance governs legal
@@ -1410,7 +1591,9 @@ reality is an intermediary-controlled database with a blockchain
 notification layer. When the SEC looks closely at those architectures,
 the gap between marketing and substance is where the enforcement risk
 lives.</p>
-    </div>
+      </div>
+</details>
+</div>
   </details>
 
 
@@ -1445,12 +1628,15 @@ lives.</p>
     </div>
   </details>
 
+  <div id="top-anchor" style="position:absolute;top:0;"></div>
   <div class="disclaimer">
     <p><em>This memorandum is provided for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities. Forward-looking statements are subject to uncertainty. Interested parties should conduct their own due diligence.</em></p>
   </div>
+  <a href="#" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to top</a>
 </div>
 
 <script>window.addEventListener('load',function(){window.scrollTo(0,0)});</script>
 </body>
-<!-- deploy:2026-03-29T23:54:59Z -->
+
+<!-- deploy:2026-03-29T23:58:23Z -->
 </html>
