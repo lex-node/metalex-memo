@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MetaLeX Labs — Investment Memorandum</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --neon: #DAFF00;
+    --neon-dim: rgba(218, 255, 0, 0.15);
+    --neon-border: rgba(218, 255, 0, 0.25);
+    --bg: #141413;
+    --bg-alt: #1C1C1A;
+    --bg-card: #1A1A18;
+    --bg-dark: #0A0A09;
+    --text: #E0E0DC;
+    --text-mid: #A0A098;
+    --text-light: #706F68;
+    --bright: #F2F2F2;
+    --border: rgba(242, 242, 242, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px; line-height: 1.72; color: var(--text);
+    background: var(--bg); -webkit-font-smoothing: antialiased;
+  }
+
+  .cover {
+    text-align: center; padding: 80px 40px 60px;
+    border-bottom: 4px solid var(--neon);
+    background: linear-gradient(175deg, #1a1a18 0%, #141413 60%);
+  }
+  .cover .label { font-size: 11px; font-weight: 800; letter-spacing: 4px; color: var(--neon); text-transform: uppercase; margin-bottom: 18px; }
+  .cover .title { font-size: 48px; font-weight: 900; color: var(--bright); margin: 0 0 10px; letter-spacing: -1.5px; }
+  .cover .subtitle { font-size: 18px; color: var(--text-mid); font-style: italic; margin-bottom: 36px; }
+  .cover .meta { font-size: 14px; color: var(--text); margin-bottom: 5px; }
+  .cover .date { font-size: 13px; color: var(--text-light); margin-top: 28px; }
+  .cover .conf { font-size: 12px; color: var(--text-light); font-style: italic; margin-top: 4px; }
+
+  .accordion-container {
+    max-width: 860px; margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+
+  .controls {
+    display: flex; gap: 10px; justify-content: flex-end;
+    margin-bottom: 16px; padding: 0 2px;
+  }
+  .controls button {
+    background: transparent; border: 1px solid var(--neon-border);
+    color: var(--neon); font-size: 12px; font-weight: 600;
+    padding: 6px 16px; border-radius: 4px; cursor: pointer;
+    font-family: inherit; letter-spacing: 0.3px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .controls button:hover {
+    background: var(--neon-dim); border-color: var(--neon);
+  }
+
+  details.section {
+    margin-bottom: 6px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-card);
+    transition: border-color 0.2s;
+  }
+  details.section:hover {
+    border-color: var(--neon-border);
+  }
+  details.section[open] {
+    border-color: var(--neon-border);
+    background: var(--bg-alt);
+  }
+
+  details.section summary {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 22px;
+    cursor: pointer; list-style: none;
+    font-size: 17px; font-weight: 700; color: var(--bright);
+    letter-spacing: -0.2px;
+    transition: color 0.15s;
+    user-select: none;
+  }
+  details.section summary::-webkit-details-marker { display: none; }
+  details.section summary::marker { display: none; content: ""; }
+  details.section summary:hover { color: var(--neon); }
+
+  .chevron {
+    width: 18px; height: 18px; flex-shrink: 0; margin-left: 12px;
+    position: relative; transition: transform 0.2s ease;
+  }
+  .chevron::before, .chevron::after {
+    content: ''; position: absolute;
+    width: 8px; height: 2px; background: var(--neon);
+    top: 50%; border-radius: 1px;
+    transition: transform 0.2s ease;
+  }
+  .chevron::before { left: 2px; transform: rotate(45deg); }
+  .chevron::after { right: 2px; transform: rotate(-45deg); }
+  details.section[open] .chevron::before { transform: rotate(-45deg); }
+  details.section[open] .chevron::after { transform: rotate(45deg); }
+
+  .section-body {
+    padding: 4px 22px 22px;
+    border-top: 1px solid var(--border);
+    animation: fadeIn 0.2s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .section-title { flex: 1; }
+
+  h2 { font-size: 18px; font-weight: 700; color: var(--neon); margin: 28px 0 10px; }
+  h3 { font-size: 15px; font-weight: 700; color: var(--bright); margin: 20px 0 8px; }
+  p { margin-bottom: 12px; text-align: justify; hyphens: auto; }
+  ul, ol { margin: 0 0 12px 22px; }
+  li { margin-bottom: 5px; }
+  li > p { margin-bottom: 5px; }
+  strong { font-weight: 700; color: var(--bright); }
+  em { color: var(--text-mid); }
+
+  table {
+    width: 100%; border-collapse: collapse;
+    margin: 14px 0 18px; font-size: 13px;
+  }
+  th {
+    background: var(--bg-dark); color: var(--neon);
+    font-weight: 700; text-align: left;
+    padding: 10px 14px; font-size: 12px; letter-spacing: 0.3px;
+  }
+  td { padding: 8px 14px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text); }
+  tr:nth-child(even) td { background: rgba(218, 255, 0, 0.03); }
+
+  hr { border: none; height: 3px; background: var(--neon); margin: 36px 0; border-radius: 2px; }
+
+  .disclaimer {
+    margin-top: 40px; padding: 20px 22px;
+    border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg-card);
+  }
+  .disclaimer p { margin: 0; font-size: 13px; text-align: center; }
+
+  @media print {
+    details.section { border: none; }
+    details.section[open] { background: none; }
+    .controls { display: none; }
+    .accordion-container { padding: 20px; max-width: 100%; }
+    .cover { padding: 40px 20px 30px; }
+    body { font-size: 12px; background: white; color: #1a1a1a; }
+    summary { color: #1a1a1a !important; }
+    .chevron { display: none; }
+    table { page-break-inside: avoid; font-size: 11px; }
+  }
+
+  @media (max-width: 700px) {
+    .cover .title { font-size: 32px; }
+    .accordion-container { padding: 16px 12px 60px; }
+    details.section summary { padding: 14px 16px; font-size: 15px; }
+    .section-body { padding: 4px 16px 18px; }
+    table { font-size: 11px; }
+    th, td { padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="label">Investment Memorandum</div>
+  <div class="title">MetaLeX Labs, Inc.</div>
+  <div class="subtitle">The Infrastructure for Natively Tokenized Corporate Securities</div>
+  <div class="meta">Delaware C-Corporation &nbsp;|&nbsp; Ethereum, Arbitrum, Base</div>
+  <div class="meta">Seed: $2.75M Raised at $27.5M Post-Money &nbsp;|&nbsp; Led by Cyber.Fund</div>
+  <div class="date">March 2026</div>
+  <div class="conf">Confidential. For prospective investors only.</div>
+</div>
+
+<div class="accordion-container">
+  <div class="controls">
+    <button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=true)">Expand All</button>
+    <button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=false)">Collapse All</button>
+  </div>
+
+  <details class="section">
+    <summary><span class="section-title">1. Executive Summary</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<p>We are building the legal and technical infrastructure for natively
+tokenized corporate securities on public blockchains. Our CyberCorps
+protocol represents a fundamental departure from every other securities
+tokenization system on the market: we make the blockchain the legally
+authoritative stock ledger, rather than a pointer to an offchain record
+maintained by an intermediary. Our own corporate governing documents are
+being finalized to designate the CyberCorps onchain system as MetaLeX
+Labs’ official stock ledger—we are building on infrastructure we plan to
+use ourselves.</p>
+<p>We raised a $2.75 million seed round led by Cyber.Fund at a $27.5
+million post-money valuation in May 2024, with participation from Seed
+Club Ventures and Delphi Labs. The protocol is live on Ethereum mainnet
+and Layer 2 networks (Arbitrum, Base).</p>
+<p><strong>Our thesis:</strong> The entire $24B+ tokenized real-world
+asset market—projected to reach $2–16 trillion by 2030—is built on a
+fundamentally flawed architecture. Every major competing platform
+produces legally empty “pointer tokens” that reference offchain records
+maintained by transfer agents and proprietary databases. The blockchain
+in these systems is a notification layer, not a source of truth.
+CyberCorps is the only production system that produces legally
+constitutive instruments where the smart contract system IS the stock
+ledger designated in the corporation’s governing documents under
+Delaware General Corporation Law §224.</p>
+<p><strong>At a Glance</strong></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 66%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Entity</td>
+<td>MetaLeX Labs, Inc. (Delaware C-Corp)</td>
+</tr>
+<tr class="odd">
+<td>Founder / CEO</td>
+<td>Gabriel Shapiro (@lex_node)</td>
+</tr>
+<tr class="even">
+<td>Sector</td>
+<td>Tokenized Securities / RWA Infrastructure / CorpFi</td>
+</tr>
+<tr class="odd">
+<td>Stage</td>
+<td>Seed</td>
+</tr>
+<tr class="even">
+<td>Total Raised</td>
+<td>$2.75M</td>
+</tr>
+<tr class="odd">
+<td>Post-Money Valuation</td>
+<td>$27.5M</td>
+</tr>
+<tr class="even">
+<td>Lead Investor</td>
+<td>Cyber.Fund</td>
+</tr>
+<tr class="odd">
+<td>Other Investors</td>
+<td>Seed Club Ventures, Delphi Labs</td>
+</tr>
+<tr class="even">
+<td>Chains</td>
+<td>Ethereum mainnet, Arbitrum, Base</td>
+</tr>
+<tr class="odd">
+<td>Status</td>
+<td>Live in production</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">2. The Opportunity: A $24B Market Built on the Wrong Architecture</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<h2 id="s3-2-1-the-tokenized-securities-market-is-exploding">2.1 The Tokenized Securities Market Is Exploding</h2>
+<p>The tokenized real-world asset market has grown from approximately
+$85 million in 2020 to over $24 billion by mid-2025—a 245-fold increase.
+Industry forecasts converge on a multi-trillion-dollar trajectory:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Source</strong></td>
+<td><strong>Forecast</strong></td>
+<td><strong>Scope</strong></td>
+</tr>
+<tr class="even">
+<td>BCG / ADDX</td>
+<td>$16T by 2030</td>
+<td>All tokenized assets</td>
+</tr>
+<tr class="odd">
+<td>Ripple / BCG</td>
+<td>$18.9T by 2033</td>
+<td>Tokenized asset market</td>
+</tr>
+<tr class="even">
+<td>Standard Chartered</td>
+<td>$30T by 2034</td>
+<td>Incl. trade finance</td>
+</tr>
+<tr class="odd">
+<td>McKinsey</td>
+<td>$2–4T by 2030</td>
+<td>Conservative baseline</td>
+</tr>
+<tr class="even">
+<td>Citigroup</td>
+<td>$4–5T by 2030</td>
+<td>Real + financial assets</td>
+</tr>
+</tbody>
+</table>
+<p>Goldman Sachs, BNY Mellon, BlackRock, Franklin Templeton, Apollo, and
+dozens of other institutional players are actively deploying
+tokenization infrastructure. Over 86% of surveyed institutional
+investors had exposure to or intended to allocate to digital assets in
+early 2025. This is not speculative—capital is moving onchain at
+institutional scale.</p>
+<h2 id="s4-2-2-but-the-entire-market-is-built-wrong">2.2 But the Entire Market Is Built Wrong</h2>
+<p>Here is the problem: virtually every dollar of this market rests on a
+fundamental architectural error. The onchain token is not the security.
+It is a pointer to an offchain record maintained by a transfer agent,
+custodian, or proprietary database. We coined the term <strong>“slop
+tokenization”</strong> to describe this phenomenon. The taxonomy is
+precise:</p>
+<ul>
+<li><p><strong>Instruction tokens:</strong> Tokens that function as
+messages to an intermediary requesting a state change in an offchain
+ledger. The intermediary can ignore the instruction.</p></li>
+<li><p><strong>Receipt tokens:</strong> Tokens issued as acknowledgments
+that an offchain event has occurred. The offchain event is
+authoritative; the token is a notification.</p></li>
+<li><p><strong>Souvenir tokens:</strong> Tokens with no legal operative
+function whatsoever—connected to underlying value by nothing more than
+marketing and vibes.</p></li>
+</ul>
+<p>In all three cases, strip away the blockchain and the underlying
+ownership structure is unchanged. The token adds latency, cost, and
+complexity without changing the trust model. If the blockchain isn’t
+performing essential work that the offchain system couldn’t do without
+it, why do you need a blockchain at all?</p>
+<h2 id="s5-2-3-our-specific-target-private-market-securities">2.3 Our Specific Target: Private Market Securities</h2>
+<p>Our immediate focus is the private market securities segment:
+venture-stage equity (SAFEs, preferred stock, common stock), SPV
+interests, and token-equity hybrid instruments. Global venture capital
+deal volume exceeded $300 billion in 2024, with tens of thousands of
+SAFE and preferred stock transactions per year, virtually all settling
+through PDF signatures, wire transfers, and manual cap table management
+on Carta. Think of us as Carta and Nasdaq Private Market in full
+symbiosis—but crypto native, onchain, and liquid. For crypto-native
+companies, where founders and investors already have wallet
+infrastructure, understand self-custody, and prefer permissionless
+tooling, we offer a fundamentally better way to raise and manage
+capital.</p>
+<h2 id="s6-2-4-the-pump-fun-pilot-token-denominated-community-safes">2.4 The Pump.fun Pilot: Token-Denominated Community SAFEs</h2>
+<p>We have developed a novel product for the Pump.fun ecosystem that
+demonstrates the breadth of what our architecture enables: Community
+SAFEs, where token holders can convert a project’s own token into equity
+stakes in the company behind the project. This “post-mine” model inverts
+the traditional crypto fundraise: the token launches first as a
+community asset (memecoin, utility token, brand-affinity token) with no
+reference to equity or SAFEs, and only later is a structured equity
+financing introduced. Both the investment amount and the valuation cap
+are denominated in the project’s token, not fiat. Participants bridge
+their tokens from Solana to Base, pass identity and compliance checks
+(including nationality verification via zkPassport and KYC/AML
+screening), and subscribe through a non-custodial smart contract escrow.
+Upon acceptance, investors receive a cyberCERT embodying the SAFE
+agreement.</p>
+<p>This model addresses a longstanding structural problem in crypto: the
+gap between token value and enterprise value. Today, equity investors
+share in a company’s success while token holders are left with a
+speculative asset with no claim on the business. The Community SAFE
+changes that—token holders can convert into equity investors through a
+legally compliant pathway, while the token continues to exist and trade
+independently. The resulting securities are non-transferable by default
+and subject to a one-year distribution compliance period under
+Regulation S. We prepared a comprehensive legal memorandum for this
+pilot covering Regulation S, Howey analysis, sufficient
+decentralization, and the structural separation between the token layer
+and the security layer.</p>
+<p>If this model succeeds, every token community with a viable project
+becomes a potential cyberRaise customer, and the communities bring their
+own distribution. This is a repeatable, viral go-to-market channel that
+no competitor can access—because no competitor has the constitutive
+tokenization architecture required to issue the securities.</p>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">3. Our Solution: Securities That Know What They Are</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<h2 id="s8-3-1-the-entity-first-architecture">3.1 The Entity-First Architecture</h2>
+<p>We invert the approach taken by every competing standard. Rather than
+starting from a token standard and adding compliance features,
+CyberCorps starts from Delaware General Corporation Law and builds token
+architecture to satisfy its requirements. The organizing principle is
+that every component in the system should know its relationship to the
+others—and should be able to act on that knowledge.</p>
+<p>The protocol’s root contract is the cyberCORP—an onchain
+representation of the corporate entity itself, storing the legal
+entity’s name, type, jurisdiction, governance information, and officer
+identities. The cyberCORP knows what entity it is, what securities it
+has authorized, and what governance rules apply to corporate actions.
+Securities are issued from this entity contract, creating a formal
+onchain link between token and issuer that no competing standard
+provides.</p>
+<h2 id="s9-3-2-the-dual-token-model">3.2 The Dual-Token Model</h2>
+<h3 id="s10-3-2-1-cybercerts-erc-721-stock-ledger-entry-tokens">3.2.1 cyberCERTs (ERC-721 Stock Ledger Entry Tokens)</h3>
+<p>Each cyberCERT is an ERC-721 NFT that functions as an entry on the
+corporation’s onchain stock ledger. It encodes everything a stock ledger
+entry requires under DGCL §§158 and 219: stockholder name,
+number/class/series of shares, authorizing officer signatures, purchase
+price, voting power, valuation cap, transfer restriction legends
+(satisfying §202), endorsement history, legal agreement URIs, and a
+fully onchain Base64-encoded SVG visualization. A cyberCERT knows what
+entity issued it, what series it belongs to, what terms govern that
+series, what transfer restrictions apply, and what its acquisition date
+and price were. Anyone buying the security can consult this single
+onchain source of truth to understand exactly what they are
+acquiring.</p>
+<p>Critically, NFT transfer alone does not change registered
+ownership—metadata must be explicitly mutated, maintaining the
+distinction between token possession and registered ownership that
+corporate law requires.</p>
+<h3 id="s11-3-2-2-cyberscrips-erc-20-scrip-tokens">3.2.2 cyberSCRIPs (ERC-20 Scrip Tokens)</h3>
+<p>cyberSCRIPs are ERC-20 fungible tokens generated from cyberCERTs via
+scripification and convertible back via de-scripification. They are the
+liquid, DeFi-compatible layer—usable in AMMs, vesting protocols, and as
+collateral—while cyberCERTs remain the canonical ownership record. We
+frame this through DGCL §155, which authorizes “scrip or warrants”
+representing fractional shares. Scrip Tokens are explicitly not stock of
+the corporation—they are conditional claims on underlying cyberCERTs,
+convertible back into registered stock when conditions are met.</p>
+<p>This dual-token model directly resolves the fundamental tension
+between legal fidelity and DeFi composability. A cyberCERT holder can
+scripify their certificate, deposit the resulting cyberSCRIPs into a
+lending protocol as collateral, and the lender obtains token-control of
+a fungible ERC-20 without admin-key override risk. Think of it as the
+stablecoin model applied to equity: USDC holders have no rights per se,
+but qualifying clients of Circle can redeem 1:1 for dollars. We also
+support what we call “degen mode”—scrip as freely tradeable tokens with
+no inherent stockholder rights, convertible back into cyberCERTs (and
+thus real registered shares) by persons who satisfy KYC/AML and other
+issuer-imposed conditions. Startups can even launch scrip first as
+something resembling a memecoin and make it convertible into securities
+later—all on the same protocol. The legal basis is solid: both DGCL §155
+and Wyoming BCA §17-16-604 expressly authorize scrip representing
+fractional shares, and the concept has a long history in corporate
+law.</p>
+<h2 id="s12-3-3-the-constitutive-difference">3.3 The Constitutive Difference</h2>
+<p>This is the load-bearing argument. In the CyberCorps model, the
+corporation’s bylaws and Certificate of Incorporation explicitly
+designate the onchain system as the official stock ledger under DGCL
+§224. The token doesn’t merely represent a stock ledger entry; it
+<strong>IS</strong> the stock ledger entry. Holding it makes you the
+stockholder of record. The governing legal instruments fuse the onchain
+state to the legal reality, so that the smart contract system is
+performing real legal work, not mirroring an offchain record.</p>
+<p>Every competing architecture maintains two ledgers that must be kept
+in sync, proving the chain isn’t the source of truth. We eliminate the
+reconciliation layer by making the chain the ledger in the governing
+documents. Transfer restrictions encoded in our smart contracts are
+doing real work—they are not redundant to an offchain compliance
+process, because there is no separate offchain ledger serving as the
+system of record.</p>
+<h2 id="s13-3-4-the-fundamental-move-signing-authority-spending-authorit">3.4 The Fundamental Move: Signing Authority = Spending Authority</h2>
+<p>Every other corporate deal system in existence separates two acts
+that should be one. You sign an agreement (DocuSign, wet ink, PDF) and
+then, in a separate process, you wire money (bank transfer, escrow
+agent, closing mechanics). The signing authority and the spending
+authority are different systems, different credentials, different
+workflows, different timelines. The gap between signing and funding is
+where deals fall apart, where counterparty risk lives, where lawyers and
+escrow agents extract fees, and where weeks of back-and-forth
+accumulate.</p>
+<p>Public key cryptography collapses this gap. An Ethereum wallet uses
+ECDSA over secp256k1 with Keccak-256—the same cryptographic primitive
+found in every browser wallet extension. The same private key that can
+sign a legal agreement (an EIP-712 typed data signature on a
+CyberAgreement) can also authorize a payment transaction (a stablecoin
+transfer into an escrow contract). The signing authority IS the spending
+authority. This is not a UX convenience. It is a fundamental
+architectural shift that makes an entirely new category of
+legal-economic operations possible.</p>
+<p>We call this design space <strong>cybernetic law</strong>: the fusion
+of legal agreements with their economic execution into cryptographically
+unified workflows. When the same keypair signs the contract and funds
+the escrow, new things become possible that are structurally impossible
+in the traditional stack:</p>
+<ul>
+<li><p><strong>True atomic sign-and-close:</strong> An investor reviews
+the agreement terms, signs the legal document, and deposits funds into
+escrow in a single blockchain transaction. There is no gap between “we
+agreed” and “we performed.” The signature and the funding are the same
+cryptographic act. The counterparty risk window is zero. No DocuSign, no
+wire instructions, no escrow agent, no data entry, no reconciliation. In
+cyberRaise, this is live today: the investor clicks “sign and confirm,”
+and the ECDSA signature simultaneously binds them to the agreement and
+commits their capital to the LeXscroW smart contract.</p></li>
+<li><p><strong>Self-executing escrow:</strong> Because the escrow
+contract knows its governing terms (via the CyberAgreementRegistry and
+Ricardian Triplers), it can automatically release funds to the issuer
+upon acceptance, or return them to the investor if the expression of
+interest is not accepted or the round closes without allocation. No
+escrow agent evaluates conditions and decides whether to release. The
+conditions are onchain, the evaluation is deterministic, and the
+execution is automatic. The escrow knows what it’s holding, why, and for
+whom—and acts accordingly.</p></li>
+<li><p><strong>Tightly coupled agreement/execution flows:</strong> The
+CyberAgreementRegistry anchors legal documents onchain with EIP-712
+signatures from all parties. Each security token (cyberCERT) knows which
+agreement governs it. Each escrow knows which agreement it enforces.
+Each corporate action traces back to an authorized signing event. The
+entire chain—from governance authorization through agreement signing
+through funding through security issuance—is a single auditable sequence
+of cryptographically linked events, not a stack of PDFs, wire
+confirmations, and manual cap table entries that must be reconciled
+after the fact.</p></li>
+<li><p><strong>Entity-to-entity composability:</strong> When two
+cyberCORPs transact—a merger, an investment, a joint venture—both sides’
+signing authorities, spending authorities, securities, escrows, and
+governing documents are part of the same onchain knowledge graph.
+Because signing = spending on both sides, a cross-entity deal can be
+structured as an atomic, multi-party escrow where all signatures and all
+payments resolve simultaneously. No coordinating across multiple law
+firms, banks, transfer agents, and cap table platforms. The governance
+approves the deal AND funds it in the same system, because the
+cryptographic authority to do both is the same key.</p></li>
+</ul>
+<p>This is the deeper design space that CyberCorps opens up—and it goes
+far beyond fundraising. Dividend distributions that execute
+automatically when the board resolution is signed. Liquidation
+waterfalls that read the cap table and pay out in priority order without
+a paying agent. Conversion mechanics (SAFE to preferred, preferred to
+common) that trigger atomically when the qualifying event occurs. Rights
+of first refusal that can be exercised and funded in a single
+transaction. Onchain corporate governance where a board vote
+simultaneously authorizes and executes the action it approves. Every
+corporate action that currently requires a human to bridge the gap
+between “authorized” and “executed” becomes a candidate for cybernetic
+automation, because the authority to approve and the authority to act
+are the same cryptographic credential.</p>
+<p>cyberRaise is the first product built on this foundation. The vision
+is much larger: a full corporate lifecycle—found, fund, manage,
+trade—where every legal act and every economic act are fused into a
+single programmable system. We call it CorpFi: DeFi-style corporate
+finance, where the legal agreements and the money move together.</p>
+<h2 id="s14-3-5-additional-protocol-innovations">3.5 Additional Protocol Innovations</h2>
+<ul>
+<li><p><strong>BorgAuth:</strong> Onchain role-based access control
+mirroring corporate governance. Corporate actions flow through the same
+onchain system, not offchain admin keys.</p></li>
+<li><p><strong>Material Adverse Exception Events (MAEEs):</strong> The
+CyberCorps bylaws define consensus attacks, hard forks, contract bugs,
+and regulatory orders as triggers for authorized remedial action—a
+legal-layer circuit breaker unique to CyberCorps.</p></li>
+<li><p><strong>Control Agreement Tokens:</strong> Onchain pledging and
+collateralization where a change in token-control constitutes
+Securities-Control under the CyberCorps bylaws.</p></li>
+<li><p><strong>Co-Approval Upgrades:</strong> We publish new contract
+implementations, but each issuer independently opts in. No unilateral
+pushes, no forced migrations. We are a protocol steward, not an
+intermediary.</p></li>
+<li><p><strong>Ricardian Triplers:</strong> Pairing human-readable legal
+agreements with machine-readable smart contract logic, ensuring
+onchain/offchain synchronization.</p></li>
+<li><p><strong>Single-Contract Multi-Series:</strong> All stock series
+within a single cyberCORP contract. Competing standards require separate
+deployments per series.</p></li>
+<li><p><strong>Full NVCA-Aligned Metadata:</strong> ShareExtension
+stores series terms, special voting rights, conversion prices, valuation
+caps, and liquidation preferences directly in onchain JSON metadata.
+Each cyberCERT is a self-describing legal instrument.</p></li>
+</ul>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">4. What We’ve Built</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<h2 id="s16-4-1-cyberraise-onchain-venture-fundraising">4.1 cyberRaise — Onchain Venture Fundraising</h2>
+<p>cyberRaise is our flagship application—a non-custodial, wallet-based
+platform for conducting venture fundraising rounds entirely onchain.
+Founders connect a wallet, configure a cyberCORP, set round terms, and
+share a link. No email accounts, no sales guys, no platform KYC. We
+support SAFE, SAFT, Token Warrant, SAFTE, and other standard deal
+types.</p>
+<ul>
+<li><p>Structured rounds with configurable admission modes
+(first-come-first-served or bid/approve), min/max ticket sizes, funding
+targets, and exploding offers.</p></li>
+<li><p>Non-custodial digital escrow (LeXscroW) that holds investor funds
+during subscription and automatically releases or returns them—no party,
+including MetaLeX, ever takes custody.</p></li>
+<li><p>Automatic issuance of cyberCERT digital securities directly to
+investor wallets upon deal closure.</p></li>
+<li><p>Built-in compliance via LeXcheX (accredited investor
+verification) with support for Reg D 506(b), 506(c), and Regulation
+S.</p></li>
+<li><p>Founder dashboard for reviewing expressions of interest, closing
+tickets, and tracking raises at a glance.</p></li>
+<li><p>Investor portfolio hub showing deployed capital, pending and
+closed investments, and owned securities across all cyberCORP
+issuers.</p></li>
+<li><p>Market-standard legal documents paired with a terms wizard that
+removes all opportunity for lawyerly gamesmanship. A fair deal for both
+sides.</p></li>
+</ul>
+<p>Gone are surprise law firm bills for five to six figures for filling
+in blanks on standard early-stage fundraising documents. Our lawyer/dev
+team has done the hard work of turning the deal process into
+algorithms.</p>
+<h2 id="s17-4-2-cybercorp-dashboard">4.2 cyberCORP Dashboard</h2>
+<p>Each corporation on our protocol gets an onchain entity hub: a
+self-maintaining cap table across every deal, portfolio tracking, and
+administrative tools for corporate actions. The dashboard shows
+authorized shares, outstanding shares by class, ownership percentages,
+fully diluted ownership, and amounts raised—all derived from onchain
+state. No vendor lock-in: if MetaLeX gets acquired by EvilCorp, you can
+just use any crypto wallet.</p>
+<h2 id="s18-4-3-lexchex-investor-verification">4.3 LeXcheX — Investor Verification</h2>
+<p>LeXcheX automates accredited investor verification for U.S.
+Regulation D offerings. For our Pump.fun pilot, we adapted LeXcheX in
+combination with zkPassport to verify non-U.S. person status and
+offshore location for Regulation S compliance. The protocol is designed
+to be extensible to additional verification regimes as regulatory
+frameworks evolve.</p>
+<h2 id="s19-4-4-metalex-pro-llp-the-attorney-client-privilege-layer">4.4 MetaLeX Pro LLP — The Attorney-Client Privilege Layer</h2>
+<p>MetaLeX Pro LLP is a 100% attorney-owned law firm that exists
+primarily to provide the attorney-client privilege layer for our work.
+Because constitutive tokenization requires deep integration of legal
+architecture with smart contract design, much of the work product—legal
+specs, product specs, compliance strategies, entity governance
+design—benefits from the protection of attorney-client privilege and
+work product doctrine. MetaLeX Pro provides that protection.</p>
+<p>In practice, MetaLeX Pro provides its services largely pro bono to
+cyberRaise users and whitelabel clients, while the revenue flows to
+MetaLeX Labs as the technology provider. Our founder Gabriel Shapiro
+offers direct legal support to founders using the platform at no
+additional charge. This structure means founders get both software
+infrastructure and privileged legal counsel from the same organization,
+at no incremental cost for the legal component—an embedded capability no
+competitor can match without building and maintaining a licensed law
+firm.</p>
+<p>MetaLeX Pro also occasionally takes on independent legal engagements
+unrelated to the protocol, leveraging the team’s deep expertise in
+crypto law, securities regulation, and entity governance. On these
+engagements, MetaLeX Labs receives a 10% royalty in its capacity as
+technology and infrastructure provider to the firm. This creates a
+modest but recurring ancillary revenue stream while keeping the law
+firm’s primary function focused on supporting protocol adoption.</p>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">5. Why We Win: The Competitive Landscape</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<h2 id="s21-5-1-everyone-else-builds-pointer-tokens">5.1 Everyone Else Builds Pointer Tokens</h2>
+<p>Every major competitor—whether a token standard (ERC-3643, ERC-1400,
+ERC-7943) or a platform (Securitize, Superstate, Canton/DTCC,
+Plume)—shares the same foundational error: they start from token
+engineering and attempt to retrofit legal compliance. Their tokens don’t
+know what they are. An ERC-3643 token knows that certain addresses are
+permitted to hold it—but not what it represents, what entity issued it,
+what documents govern it, or what series terms define its economic
+rights. We start from corporate law and build outward to the token.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 17%" />
+<col style="width: 13%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Platform</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Ledger Authority</strong></td>
+<td><strong>Entity Onchain</strong></td>
+<td><strong>Per-Share Metadata</strong></td>
+<td><strong>DeFi Composable</strong></td>
+</tr>
+<tr class="even">
+<td>MetaLeX CyberCorps</td>
+<td>Protocol</td>
+<td>Onchain (Bylaws)</td>
+<td>Yes</td>
+<td>Yes (ERC-721)</td>
+<td>Yes (via Scrip)</td>
+</tr>
+<tr class="odd">
+<td>ERC-3643 / T-REX</td>
+<td>Standard</td>
+<td>Offchain</td>
+<td>No</td>
+<td>No</td>
+<td>Gated</td>
+</tr>
+<tr class="even">
+<td>Securitize</td>
+<td>Platform</td>
+<td>Offchain (TA)</td>
+<td>No</td>
+<td>No</td>
+<td>Gated</td>
+</tr>
+<tr class="odd">
+<td>Superstate</td>
+<td>Platform</td>
+<td>Offchain (TA)</td>
+<td>No</td>
+<td>No</td>
+<td>Gated</td>
+</tr>
+<tr class="even">
+<td>Canton / DTCC</td>
+<td>Network</td>
+<td>Offchain (DTC)</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>Plume Network</td>
+<td>L1 Chain</td>
+<td>Offchain (TA)</td>
+<td>No</td>
+<td>No</td>
+<td>Gated</td>
+</tr>
+</tbody>
+</table>
+<p>The combined market influence of these competitors is massive—$910M
+AUM at Superstate, billions administered by Securitize, $6T+ in
+tokenized assets on Canton, $645M on Plume, $28B+ under ERC-3643. But
+all of them share a common architectural blind spot: their tokens don’t
+know what they are, and their blockchains aren’t the source of
+truth.</p>
+<h2 id="s22-5-2-our-moat-is-legal-architectural">5.2 Our Moat Is Legal-Architectural</h2>
+<p>Our competitive advantage is not primarily technical—it is the fusion
+of legal architecture with protocol design. Replicating the CyberCorps
+technology without the legal framework (bylaws, COI, Scrip Token ToS)
+produces a token with no constitutive effect. The advantages are
+layered:</p>
+<ul>
+<li><p><strong>Legal-engineering integration:</strong> Our protocol was
+designed by a practicing securities lawyer who simultaneously authors
+the legal instruments and reviews the smart contract code. No competitor
+has this capability.</p></li>
+<li><p><strong>First-mover in constitutive tokenization:</strong> We are
+the only production system designed so that the blockchain is designated
+as the legally authoritative stock ledger in the corporation’s own
+governing documents.</p></li>
+<li><p><strong>DGCL statutory mapping:</strong> Our architecture is
+explicitly mapped to §§151, 155, 156, 158, 202, 217, 218, 219, 220, and
+224. Competitors would need to re-derive the entire legal architecture
+from scratch.</p></li>
+<li><p><strong>Founder distribution:</strong> The @lex_node persona is
+one of the most followed legal voices in crypto, generating organic deal
+flow and ecosystem credibility that cannot be purchased.</p></li>
+</ul>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">6. Regulatory Tailwinds</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<h2 id="s24-6-1-sec-joint-staff-statement-january-28-2026">6.1 SEC Joint Staff Statement (January 28, 2026)</h2>
+<p>The SEC’s Divisions of Corporation Finance, Investment Management,
+and Trading and Markets jointly issued a landmark statement confirming
+that federal securities laws apply to tokenized securities regardless of
+format, and distinguishing between issuer-sponsored and third-party
+tokenization models. This statement is directly favorable to our
+architecture: CyberCorps is natively “issuer-sponsored” (the corporation
+itself is onchain, and securities are issued from the entity contract),
+and the statement’s emphasis on economic substance over technological
+format validates our approach of making onchain state legally
+authoritative through corporate governing documents.</p>
+<h2 id="s25-6-2-pro-innovation-executive-order">6.2 Pro-Innovation Executive Order</h2>
+<p>Executive Order 14178, “Strengthening American Leadership in Digital
+Financial Technology,” signals sustained policy support for
+blockchain-native financial infrastructure. The SEC’s January 2026
+statement explicitly aligns with this executive order.</p>
+<h2 id="s26-6-3-delaware-corporate-law-foundation">6.3 Delaware Corporate Law Foundation</h2>
+<p>We build directly on the DGCL, which governs over 65% of Fortune 500
+companies and the vast majority of venture-backed startups. DGCL §224
+permits corporations to maintain their stock ledger through “one or more
+electronic networks or databases.” The CyberCorps bylaws and COI
+templates make this designation for blockchain networks, and MetaLeX
+Labs’ own governing documents are being finalized to do the
+same—creating a direct statutory foundation that no other protocol has
+established.</p>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">7. Traction and Momentum</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<h2 id="s28-7-1-prior-track-record-borg-advisory">7.1 Prior Track Record: BORG Advisory</h2>
+<p>Before pivoting to the CyberCorps tokenized securities protocol,
+MetaLeX built its reputation and revenue through BORG (cyBernetic
+ORGanization) advisory and smart contract deployments for major
+DAO-adjacent protocols. Our BORG clients include Lido, Everclear,
+ZKsync, Neutron, Curve, and Yearn. While we view DAOs as a shrinking TAM
+in the current political climate, this work was rewarding, revenue
+generating, and critically important: it built the smart contract
+infrastructure (BorgAuth, LeXscroW, MetaVesT, borg-core), the legal
+frameworks, and the team capabilities that CyberCorps now repurposes for
+the much larger corporate securities market. The technology stack didn’t
+change—the target market did.</p>
+<h2 id="s29-7-2-live-protocol">7.2 Live Protocol</h2>
+<ul>
+<li><p>CyberCorps protocol live on Ethereum mainnet, Arbitrum, and
+Base.</p></li>
+<li><p>MetaLeX Labs’ own governing documents (bylaws and COI) are being
+finalized to designate CyberCorps as our official stock ledger under
+DGCL §224.</p></li>
+<li><p>cyberRaise v2 launched with full structured round support,
+digital escrow, and automated investor portfolio management.</p></li>
+<li><p>Active codebase across multiple repositories
+(cybercorps-contracts, MetaVesT, LeXscroW, borg-core,
+CyberAgreementRegistry) with ongoing feature development including
+partial scripification, scrip ratio math, and CyberScrip ERC-20
+compliance.</p></li>
+<li><p>CyberAgreementRegistry live: an onchain legal document anchoring
+system using EIP-712 typed data signatures, enabling the signing
+authority = spending authority workflows that power cyberRaise and the
+broader cybernetic law design space.</p></li>
+<li><p>Comprehensive Scrip Token Terms of Service at v8 DRAFT,
+extensively cross-reviewed against the live codebase.</p></li>
+<li><p>ShareExtension v2 redesign in progress: separating canonical
+SeriesTerms registry from per-certificate CyberCertData.</p></li>
+<li><p>GAIB (AI lawyer agent) in development: an onchain AI assistant
+that guides founders through cyberCORP setup, round configuration, and
+deal structuring directly in the app.</p></li>
+</ul>
+<h2 id="s30-7-3-thought-leadership">7.3 Thought Leadership</h2>
+<p>We have published the most comprehensive analytical work on tokenized
+securities standards in the industry:</p>
+<ul>
+<li><p>A ~16,350-word comparative analysis of every major tokenized
+securities standard and platform, establishing our intellectual
+authority.</p></li>
+<li><p>“What Is Slop Tokenization and Why Is It Bad?”—coining a term now
+entering industry vernacular.</p></li>
+<li><p>“Seven Theses on Tokenized Securities”—a widely shared
+distillation of our architectural argument.</p></li>
+<li><p>A comprehensive legal memorandum for the Pump.fun Community SAFE
+Pilot Program covering Regulation S, Howey analysis, and sufficient
+decentralization.</p></li>
+<li><p>The ACE (Asset Conversion to Equity) model for token-denominated
+SAFE offerings.</p></li>
+</ul>
+<h2 id="s31-7-4-pipeline-and-active-engagements">7.4 Pipeline and Active Engagements</h2>
+<p>Beyond our self-service cyberRaise product and the Pump.fun pilot, we
+have signed our first enterprise whitelabel engagement: a multiphase
+implementation contract with an international platform building
+tokenized investment infrastructure for private companies and investment
+funds (including venture capital, private equity, and single-asset
+funds) through SPV structures. The engagement includes a six-month
+R&amp;D and implementation timeline, an upfront advance against an
+ongoing revenue royalty, “Powered by MetaLeX protocol” co-branding, and
+an 18-month exclusivity period for the client’s competitive vertical.
+This deal validates the Twilio-style business model: a platform that
+needs tokenized securities infrastructure licenses our protocol rather
+than building from scratch, and we earn recurring revenue as their users
+transact.</p>
+<p>Additional whitelabel opportunities and custom protocol deployments
+are in active pipeline. Tax basis infrastructure (per-lot tracking
+through scripification), additional ShareExtension features, SDK/API
+tooling for third-party integrations, and the VALOR smart contract
+license are on our near-term roadmap.</p>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">8. Founder: Gabriel Shapiro</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<p>Gabriel Shapiro (J.D., UCLA School of Law, 2010; B.A. Philosophy,
+Brown University, 2004) is among the most recognized legal practitioners
+in the digital asset space. His career uniquely combines elite BigLaw
+M&amp;A training with deep crypto-native practice, making him one of
+very few people capable of simultaneously authoring Delaware corporate
+instruments, reviewing Solidity smart contracts, and maintaining a
+first-person distribution channel into the crypto venture ecosystem.</p>
+<h2 id="s33-8-1-biglaw-m-amp-a-foundation-2010-2018">8.1 BigLaw M&amp;A Foundation (2010–2018)</h2>
+<p>Gabriel spent nearly eight years as an M&amp;A associate at three of
+the world’s leading corporate law firms: Dewey &amp; LeBoeuf, Weil
+Gotshal &amp; Manges, and Hogan Lovells. He represented public and
+private technology companies in structuring, negotiating, and
+documenting domestic and cross-border M&amp;A transactions—merger
+agreements, stock purchase agreements, asset purchase agreements, joint
+ventures, agreements involving stock consideration, earn-outs, mergers
+of equals, inversions, and tax-free reorganizations. He analyzed complex
+securities law issues, conducted corporate due diligence, coordinated
+specialist due diligence teams, and advised boards of directors on
+governance matters. This training gave him a practitioner’s
+understanding of the traditional corporate infrastructure—stock ledgers,
+transfer agents, securities registration, custody chains—that directly
+informs our architectural thesis. He knows the traditional system well
+enough to know exactly what needs to be replaced and what must be
+preserved.</p>
+<h2 id="s34-8-2-early-crypto-legal-career-2018-2020">8.2 Early Crypto Legal Career (2018–2020)</h2>
+<p>Gabriel transitioned into blockchain-native practice as Chief Legal
+Officer of GridPlus Inc., an Ethereum-based energy and hardware wallet
+company. At GridPlus, he played a key role in helping the company obtain
+a Texas retail energy provider certificate in the face of an
+unprecedented public interest campaign opposing the grant, and assisted
+in formulating lobbying strategies for Texas energy laws. He then joined
+DLx Law, representing emerging blockchain companies in startup
+formation, financings, M&amp;A, and strategic transactions.</p>
+<h2 id="s35-8-3-pioneering-dao-legal-work-2020-2021">8.3 Pioneering DAO Legal Work (2020–2021)</h2>
+<p>As a partner at Belcher Smolen Van Loo Law, Gabriel designed the
+pioneering MetaCartel Ventures DAO—widely recognized as the first
+legally compliant onchain venture fund. He represented numerous DeFi
+projects in raising venture capital from Paradigm, Pantera, and True
+Ventures. He served as an “autonomous attorney” within DAO communities
+including Yearn, Curve, and Lido, and served as Rarible’s outside
+corporate counsel from the early days of the NFT market (June 2020),
+pioneering legal approaches to novel NFT issues. This period established
+his reputation as the attorney most willing and able to push legal
+boundaries for decentralized governance—a reputation that directly feeds
+our deal flow.</p>
+<h2 id="s36-8-4-general-counsel-delphi-digital-2021-2024">8.4 General Counsel, Delphi Digital (2021–2024)</h2>
+<p>As General Counsel of Delphi Digital Labs, Gabriel oversaw all legal
+aspects of the development and launch of two DeFi protocols: Astroport
+(AMM) and Mars Protocol (credit protocol). He designed and negotiated
+agreements for Delphi Labs’ incubator, oversaw international tax
+structuring across four jurisdictions, provided strategic counsel on
+fund regulatory issues to Delphi Ventures, and advised portfolio
+companies on token launch strategies and regulatory positioning. The
+Delphi role gave him direct experience managing the full protocol
+lifecycle from a legal perspective—entity formation, venture
+fundraising, token launch, ongoing governance—which is precisely the
+workflow CyberCorps automates. Delphi Labs’ participation as an investor
+in MetaLeX reflects their direct knowledge of Gabriel’s
+capabilities.</p>
+<h2 id="s37-8-5-thought-leadership">8.5 Thought Leadership</h2>
+<p>Gabriel is the architect of the BORG (cyBernetic ORGanization) legal
+framework and the principal author of the CyberCorps protocol’s
+legal-architectural design. He developed a quantitative test for
+“sufficient decentralization” that has been cited in industry analysis
+alongside frameworks proposed by SEC commissioners. His @lex_node
+persona on X is one of the most followed legal voices in crypto,
+functioning as both a thought leadership platform and a direct
+distribution channel to founders and investors.</p>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">9. Business Model</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<h2 id="s39-9-1-the-twilio-analogy-protocol-as-infrastructure-layer">9.1 The Twilio Analogy: Protocol as Infrastructure Layer</h2>
+<p>Our long-term business model draws from the same playbook as Twilio,
+Stripe, and Plaid: we provide the infrastructure layer that other
+companies build on top of, and we monetize through a combination of
+implementation fees, protocol royalties, and usage-based revenue. Just
+as Twilio made telephony programmable so that any developer could embed
+communications into their app, we make corporate securities programmable
+so that any platform can embed tokenized equity, SPV interests, and
+investment instruments into their product. The protocol is the product.
+The API is the distribution.</p>
+<p>We envision a future in which the CyberCorps smart contracts, legal
+document templates, and compliance infrastructure are available as SDKs
+and APIs that third-party platforms integrate directly. A fintech
+company building a private market investment platform shouldn’t need to
+re-derive Delaware corporate law from scratch or build a tokenized stock
+ledger from first principles. They should be able to call our API,
+deploy a cyberCORP, issue cyberCERTs to investors, and manage corporate
+actions through programmatic interfaces—with the legal architecture,
+compliance hooks, and statutory mappings already embedded. We build it
+once; every platform that integrates it benefits.</p>
+<h2 id="s40-9-2-revenue-streams">9.2 Revenue Streams</h2>
+<ul>
+<li><p><strong>Whitelabel implementation + royalties:</strong> For
+platforms that need deep customization, we provide bespoke “Cybernetic
+Law Implementations”: we adapt the MetaLeX Protocol (both smart
+contracts and legal documentation strategies) to the client’s product
+and legal specifications, deployed on their chosen EVM blockchain. These
+engagements include an upfront implementation fee plus an ongoing
+royalty on revenues generated through MetaLeX-integrated systems, with
+the royalty rate declining over time as cumulative volume grows (similar
+to how Stripe’s enterprise pricing works). The client’s platform
+features “Powered by MetaLeX protocol” branding, and we provide ongoing
+technical and advisory support. This is already in production: we have a
+signed engagement with an international platform building tokenized
+investment infrastructure for private companies and funds through SPV
+structures, utilizing MetaLeX’s cyberCORPs and cyberShares smart
+contracts on a SaaS-style basis with royalty-based
+monetization.</p></li>
+<li><p><strong>cyberRaise transaction fees:</strong> Our self-service
+fundraising platform charges fees on transactions processed through the
+platform. The pay-as-you-go model replaces traditional
+five-to-six-figure law firm bills.</p></li>
+<li><p><strong>Law firm royalty:</strong> MetaLeX Pro LLP provides pro
+bono legal services to protocol users (the privilege layer), but also
+takes independent legal engagements leveraging the team’s crypto law
+expertise. MetaLeX Labs receives a 10% royalty on these independent
+engagements as technology and infrastructure provider to the firm—a
+modest recurring revenue stream that also serves as a business
+development channel, since independent legal clients frequently become
+protocol adopters.</p></li>
+<li><p><strong>Protocol-level fees:</strong> As the protocol matures and
+adoption scales, transaction and administration fees on the CyberCorps
+smart contract system create recurring revenue at the protocol
+level—analogous to Twilio’s per-message or per-minute pricing.</p></li>
+<li><p><strong>Future token potential:</strong> We expect MetaLeX could
+eventually have its own governance token if the protocol evolves to
+require governance by its users, though this is not near-term.</p></li>
+</ul>
+<h2 id="s41-9-3-the-flywheel">9.3 The Flywheel</h2>
+<p>Each implementation engagement improves the protocol. Features built
+for one client’s Legal Spec and Product Spec flow back into the core
+MetaLeX Protocol through license-back provisions, making the next
+engagement faster and cheaper to deliver. Custom transfer hooks,
+compliance modules, and integration patterns developed for whitelabel
+clients become reusable components in the SDK. The more platforms build
+on MetaLeX, the richer the protocol becomes, the easier the next
+integration is, and the stronger the network effects. This is the Twilio
+flywheel: every customer makes the platform better for the next
+customer.</p>
+<h2 id="s42-9-4-go-to-market">9.4 Go-to-Market</h2>
+<p>Our go-to-market operates on two tracks. The self-service track is
+crypto-native and permissionless: founders connect a wallet, configure a
+cyberCORP, and launch a cyberRaise. No sales call, no onboarding, no
+platform KYC gate. The enterprise track is the whitelabel model:
+platforms building tokenized investment products (private market access,
+SPV tokenization, fund tokenization) engage us for bespoke Cybernetic
+Law Implementations with ongoing royalty monetization. The Pump.fun
+Community SAFE pilot represents a third channel: token communities as a
+funnel into equity fundraising, where every token community with a
+viable project becomes a potential cyberRaise customer.</p>
+<h2 id="s43-9-5-use-of-proceeds">9.5 Use of Proceeds</h2>
+<p>We allocate capital to protocol development (smart contract
+engineering, SDK/API infrastructure, ShareExtension redesign, tax basis
+infrastructure), product development (cyberRaise features, LeXcheX
+enhancements, whitelabel deployment tooling), and ecosystem growth
+(partnerships, pilot programs, thought leadership).</p>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">10. Capitalization</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<h2 id="s45-10-1-current-cap-table-summary">10.1 Current Cap Table Summary</h2>
+<p>The following summarizes MetaLeX Labs’ current capitalization on a
+fully diluted basis, post-seed. All figures reflect the Series Seed
+round and outstanding equity awards.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Category</strong></td>
+<td><strong>Shares (FD)</strong></td>
+<td><strong>FD %</strong></td>
+</tr>
+<tr class="even">
+<td>Founder &amp; CEO (Gabriel Shapiro)</td>
+<td>52.55</td>
+<td>47.8%</td>
+</tr>
+<tr class="odd">
+<td>Team &amp; Advisors (10 individuals, vesting)</td>
+<td>14.25</td>
+<td>13.0%</td>
+</tr>
+<tr class="even">
+<td>Delphi Labs (early strategic partner)</td>
+<td>10.00</td>
+<td>9.1%</td>
+</tr>
+<tr class="odd">
+<td>Seed Investors</td>
+<td>10.00</td>
+<td>9.1%</td>
+</tr>
+<tr class="even">
+<td>Unallocated Incentive Award Pool</td>
+<td>21.77</td>
+<td>19.8%</td>
+</tr>
+<tr class="odd">
+<td>Reserved for Preferred Conversion</td>
+<td>10.00</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="s46-10-2-seed-investors">10.2 Seed Investors</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Investor</strong></td>
+<td><strong>Amount Invested</strong></td>
+<td><strong>FD %</strong></td>
+</tr>
+<tr class="even">
+<td>Cyber.Fund (Lead)</td>
+<td>$2,100,000</td>
+<td>7.6%</td>
+</tr>
+<tr class="odd">
+<td>Seed Club Ventures</td>
+<td>$235,000</td>
+<td>0.9%</td>
+</tr>
+<tr class="even">
+<td>Angel investors (6 individuals)</td>
+<td>$165,000</td>
+<td>0.6%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="s47-10-3-key-terms">10.3 Key Terms</h2>
+<ul>
+<li><p><strong>Total authorized shares:</strong> 120
+(post-seed)</p></li>
+<li><p><strong>Series Seed price per share:</strong> $250,000
+(implied)</p></li>
+<li><p><strong>Pre-money valuation:</strong> $25,000,000</p></li>
+<li><p><strong>Post-money valuation:</strong> $27,500,000</p></li>
+<li><p><strong>Total raised:</strong> $2,750,000</p></li>
+<li><p><strong>Incentive pool:</strong> 50 shares authorized, ~28.2
+subject to outstanding awards (vested + vesting), ~21.8 remaining
+available for future grants</p></li>
+<li><p><strong>Vesting:</strong> 4-year service-based vesting with
+6-month cliff for team members; double-trigger acceleration for all;
+single-trigger acceleration for founder on termination without cause or
+resignation for good reason</p></li>
+<li><p><strong>Founder ownership:</strong> ~47.8% fully diluted, with
+significant alignment—the single largest stakeholder by a wide margin,
+with vesting provisions that ensure continued long-term
+commitment</p></li>
+</ul>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">11. Why Now, Why Us</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<p><strong>The market is moving.</strong> Tokenized RWAs have grown 245x
+in five years. BCG, Ripple, Citigroup, and Standard Chartered all
+project trillions in tokenized assets by 2030–2034. Institutional
+capital is pouring in. The infrastructure layer is being set now, and
+the architectural choices made today will compound for decades.</p>
+<p><strong>The regulation is arriving.</strong> The SEC’s January 2026
+statement provides the clearest guidance yet on tokenized securities,
+validating issuer-sponsored models and emphasizing economic substance
+over format. The pro-innovation executive order creates sustained policy
+tailwind. Delaware’s §224 has always permitted electronic stock
+ledgers—we are the first to use it.</p>
+<p><strong>The competition is building the wrong thing.</strong>
+Securitize, Superstate, Canton, Plume, and the token standard ecosystem
+have collectively invested hundreds of millions in pointer-token
+infrastructure. They have distribution, institutional relationships, and
+AUM. What they do not have is the right architecture. Their tokens don’t
+know what they are. Their blockchains aren’t the source of truth. They
+are building faster fax machines. We are building the replacement.</p>
+<p><strong>We are the only team that can do this.</strong> Constitutive
+tokenization requires the simultaneous ability to author Delaware
+corporate instruments, design smart contract architecture, and navigate
+securities regulation—all in a single integrated design process. Our
+founder is one of the only people in the world with this combination of
+competencies, trained at elite BigLaw firms, battle-tested as general
+counsel of a major DeFi shop, and operating the most recognized
+independent legal voice in crypto. The team integrates lawyers and
+developers in a single organization. The legal architecture and the
+protocol are inseparable, and we are the only team building both.</p>
+<p><strong>We eat our own cooking.</strong> MetaLeX Labs’ own governing
+documents are being finalized to designate CyberCorps as our official
+stock ledger. We are not asking anyone to adopt infrastructure we
+wouldn’t use ourselves. The securities we plan to issue to investors
+will be CyberCorps-issued cyberCERTs—the architecture is the product,
+and the product is how we intend to operate.</p>
+
+    </div>
+  </details>
+
+  <details class="section">
+    <summary><span class="section-title">12. Frequently Asked Questions</span><span class="chevron"></span></summary>
+    <div class="section-body">
+
+<p><em>We hear smart, skeptical questions regularly. Here are the ones
+that come up most often, and our honest answers.</em></p>
+<h2 id="s50--hasn-t-this-been-tried-before-security-token-offerings-fail">“Hasn’t this been tried before? Security token offerings failed in 2017–2019.”</h2>
+<p>Yes, and for a specific reason: the first generation of security
+token projects started from the token and tried to retrofit legal
+compliance. They produced tokens that carried no legal content—no issuer
+identity, no series terms, no restriction legends, no governing document
+references—and wrapped them in compliance modules (whitelists, transfer
+restrictions) that duplicated work the issuer or transfer agent was
+already doing offchain. The result was an expensive, less-capable mirror
+of the existing system with no path to DeFi composability. We start from
+the opposite end: Delaware corporate law first, token architecture
+second. The CyberCorps protocol doesn’t add a blockchain layer on top of
+the existing intermediary chain; it replaces the intermediary chain by
+making the blockchain the legally authoritative stock ledger. That’s a
+different product, not a retry of the old one.</p>
+<h2 id="s51--securitize-has-billions-in-aum-and-institutional-relationsh">“Securitize has billions in AUM and institutional relationships with BlackRock. How do you compete with that?”</h2>
+<p>We don’t compete for the same customers, at least not yet. Securitize
+serves institutional fund products (like BlackRock’s BUIDL) where the
+existing custody and transfer agent infrastructure is a feature, not a
+bug—those clients want the intermediary chain. Our target is
+crypto-native private companies, venture-stage equity, and token
+communities where founders and investors already have wallets,
+understand self-custody, and actively prefer permissionless tooling.
+That said, Securitize’s architecture has a structural ceiling: its
+tokens don’t know what they are (an ERC-20 balance that carries no
+issuer identity, no series terms, no per-share metadata), its DS
+Protocol retains god-mode admin keys (freeze, force transfer, pause,
+recover) that make the tokens unsuitable for DeFi collateral, and every
+new DeFi protocol that wants to interact with a Securitize token must be
+individually approved by the transfer agent. That approval bottleneck
+scales linearly with ecosystem adoption. Our architecture eliminates
+it.</p>
+<h2 id="s52--doesn-t-putting-stockholder-names-on-a-public-blockchain-cr">“Doesn’t putting stockholder names on a public blockchain create a privacy disaster?”</h2>
+<p>This is a real design consideration, and we’ve addressed it at
+multiple layers. First, the offchain PII requirement is an architectural
+choice, not a regulatory mandate. Transfer agent law does not require
+PII to be offchain—the constraint flows from the collision between
+public blockchain transparency and privacy law. Second, our protocol
+supports encrypted metadata: investors can encrypt their name and
+personally identifiable details so that these are only visible to the
+cyberCORP founder and not recorded in plaintext onchain. Third, pre-IPO
+cyberCERTs can be soulbound (non-transferable), limiting onchain
+visibility to the holder’s own wallet and authorized onchain roles.
+Fourth, the broader ecosystem is developing ZK-based privacy solutions
+(e.g., ZKsync’s Prividium, per-issuer ZK rollups for PII privacy) that
+are architecturally compatible with our model. The key point is that our
+model is strictly superior to the intermediary model for stockholder
+inspection rights under DGCL §220: because the stock ledger is onchain
+and readable, a stockholder demanding inspection can actually inspect
+it. In Canton’s architecture, by contrast, no single node holds the
+complete ownership graph, and reconstructing it requires the cooperation
+of every participant node—which is just the existing
+intermediary-mediated inspection process on more expensive
+infrastructure.</p>
+<h2 id="s53--what-if-there-s-a-smart-contract-bug-the-stock-ledger-gets-">“What if there’s a smart contract bug? The stock ledger gets corrupted and you have a legal crisis.”</h2>
+<p>This is exactly what our Material Adverse Exception Events (MAEE)
+framework addresses, and no competing standard has anything equivalent.
+The CyberCorps bylaws explicitly define consensus attacks, contentious
+hard forks, contract bugs, and regulatory orders as MAEEs, and authorize
+the corporation to take remedial measures including using administrative
+privileges to freeze tokens pending resolution. More importantly, the
+bylaws provide that no issuance, transfer, or other change that arose
+from or in connection with an MAEE is given legal effect. This is a
+legal-layer circuit breaker: the law and the code work together, so that
+if the code fails, the legal framework provides an orderly resolution
+mechanism. Compare this to ERC-3643’s pause function or ERC-1400’s
+controller operations—those handle the same scenario mechanically (stop
+transfers) but without any corresponding legal framework defining what
+happens next. They freeze the contract but leave the legal consequences
+undefined.</p>
+<h2 id="s54--compliance-obligations-require-intermediaries-you-can-t-jus">“Compliance obligations require intermediaries. You can’t just encode compliance in a smart contract and call it done.”</h2>
+<p>We agree completely, and this is actually one of our central
+arguments against the competing standards, not against us. Compliance
+obligations attach to regulated persons and entities (broker-dealers,
+transfer agents, issuers), not to tokens or smart contracts. A
+compliance module that returns true or false based on deterministic
+inputs is not a compliance program—it is a boolean function masquerading
+as one. ERC-3643’s entire architecture is built on the assumption that
+encoding compliance checks in the token transfer layer is the right
+approach, when in reality a transfer agent cannot satisfy its
+obligations under Exchange Act §17A by deferring to a canTransfer()
+response. The CyberCorps model does not try to encode compliance in the
+token. Instead, the issuer retains the governance powers DGCL requires
+(enforce transfer restrictions, conduct corporate actions, maintain
+stockholder records) and exercises them through the same onchain system
+via BorgAuth. Transfer restrictions on cyberCERTs are the DGCL §202
+restrictions themselves, implemented by the smart contract rejecting
+noncompliant transactions, because the smart contract IS the stock
+ledger and rejecting the transaction IS the issuer’s refusal to register
+the transfer.</p>
+<h2 id="s55--isn-t-metalex-just-becoming-the-new-intermediary">“Isn’t MetaLeX just becoming the new intermediary?”</h2>
+<p>This is probably the most important architectural question, and we’ve
+designed specifically against it. The co-approval upgrade model is the
+key: we publish new contract implementations, but each issuer (each
+cyberCORP) decides whether and when to adopt them. No unilateral pushes.
+No forced migrations. An issuer can stay on its original contracts
+indefinitely. If the protocol operator could unilaterally modify the
+stock ledger contracts, it would effectively be a transfer agent with
+admin keys, and we’d have recreated the intermediary dependency the
+architecture is designed to eliminate. We are a protocol steward, not a
+securities intermediary. This matters for regulatory classification (we
+are not a transfer agent or broker-dealer), for the trust model (issuers
+and investors don’t need to trust MetaLeX with ongoing control over
+their securities), and for the “walkaway test”: if MetaLeX disappeared
+tomorrow, every cyberCORP and its securities would continue to function
+on the blockchain. No vendor lock-in.</p>
+<h2 id="s56--doesn-t-the-erc-721-model-mean-every-stock-transfer-is-an-n">“Doesn’t the ERC-721 model mean every stock transfer is an NFT trade? That’s terrible UX for liquid securities.”</h2>
+<p>This is what cyberSCRIPs solve. The dual-token model separates the
+legal record (ERC-721 cyberCERTs for the stock ledger) from the liquid
+composable layer (ERC-20 cyberSCRIPs for DeFi and trading). A
+stockholder who wants liquidity scripifies their cyberCERT into fungible
+ERC-20 tokens, trades or deploys them freely, and the buyer can
+de-scripify back into a registered cyberCERT when they want full
+stockholder rights. Think of the stablecoin model: your average USDC
+holder has no direct rights against Circle, but qualifying clients can
+redeem 1:1. The cyberCERT layer provides legal fidelity and per-share
+metadata; the cyberSCRIP layer provides liquidity and composability. No
+other standard offers both. Competing standards offer only fungible
+tokens (which lack metadata) or only NFTs (which lack liquidity). We
+solved the tradeoff.</p>
+<h2 id="s57--this-only-works-for-delaware-corporations-what-about-other-">“This only works for Delaware corporations. What about other jurisdictions?”</h2>
+<p>Delaware is the right starting point: it governs over 65% of Fortune
+500 companies, the vast majority of venture-backed startups, and has the
+most developed body of corporate law and case law in the United States.
+But we’re not limited to it. Wyoming’s Business Corporation Act
+(§17-16-604) expressly authorizes scrip representing fractional shares.
+Other U.S. states and international jurisdictions are developing their
+own digital asset corporate frameworks. Our architecture is designed to
+be jurisdiction-adaptable: the legal instruments (bylaws, COI) are the
+layer that maps the protocol to a specific jurisdiction’s corporate law,
+and those can be re-authored for different jurisdictions while the smart
+contract infrastructure remains the same. Delaware is the beachhead, not
+the ceiling.</p>
+<p><strong>“You’re a seed-stage company competing against platforms with
+hundreds of millions in AUM. What’s your realistic path to
+scale?”</strong></p>
+<p>Our distribution advantage is that we don’t need to sell enterprise
+contracts. A founder connects a wallet, configures a cyberCORP, and
+launches a cyberRaise. There is no sales call, no onboarding process, no
+platform KYC gate. This permissionless model means our growth is
+bottlenecked by awareness and product quality, not by sales team
+capacity. Our founder’s @lex_node persona is already the distribution
+channel for crypto-native venture fundraising—the audience that would
+use cyberRaise is largely the audience already following Gabriel’s work.
+The Pump.fun Community SAFE pilot, if successful, opens a second viral
+channel: every token community with a viable project becomes a potential
+cyberRaise customer, and those communities bring their own distribution.
+We don’t need to compete for BlackRock; we need to win the crypto-native
+private market, which is underserved, growing, and architecturally
+aligned with everything we’ve built.</p>
+<h2 id="s58--what-happens-when-the-sec-decides-that-onchain-stock-ledger">“What happens when the SEC decides that onchain stock ledgers need specific regulatory treatment?”</h2>
+<p>We welcome it. The SEC’s January 2026 joint staff statement already
+validates our model by distinguishing issuer-sponsored tokenization from
+third-party models and emphasizing that economic substance governs legal
+treatment regardless of format. If new rules emerge specifically
+addressing onchain stock ledgers, we are the best-positioned protocol to
+comply, because our architecture already maps directly to the statutory
+requirements. We’re not doing something the SEC hasn’t contemplated—DGCL
+§224 has permitted electronic stock ledgers since 2017, and our bylaws
+are an implementation of that existing authority. The real regulatory
+risk sits with protocols that pretend their tokens are something they’re
+not: platforms where the token says “tokenized security” but the legal
+reality is an intermediary-controlled database with a blockchain
+notification layer. When the SEC looks closely at those architectures,
+the gap between marketing and substance is where the enforcement risk
+lives.</p>
+    </div>
+  </details>
+
+
+  <div class="disclaimer">
+    <p><em>This memorandum is provided for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities. Forward-looking statements are subject to uncertainty. Interested parties should conduct their own due diligence.</em></p>
+  </div>
+</div>
+
+<script>window.addEventListener('load',function(){window.scrollTo(0,0)});</script>
+</body>
+</html>
