@@ -632,7 +632,7 @@ documents. Transfer restrictions encoded in our smart contracts are
 doing real work—they are not redundant to an offchain compliance
 process, because there is no separate offchain ledger serving as the
 system of record.</p>
-<h2 id=”s13-3-4-the-fundamental-move-signing-authority-spending-authorit”>The Fundamental Move: Signing Authority = Spending Authority</h2>
+<h2 id="s13-3-4-the-fundamental-move-signing-authority-spending-authorit">The Fundamental Move: Signing Authority = Spending Authority</h2>
 <p>Every other corporate deal system separates signing an agreement from wiring money. The gap between the two is where deals fall apart, where counterparty risk lives, and where intermediaries extract fees. Public key cryptography collapses this gap: the same private key that signs a legal agreement can authorize a payment transaction. The signing authority IS the spending authority. We call this design space <strong>cybernetic law</strong>.</p>
 <p><strong>Atomic sign-and-close:</strong> In cyberRaise, an investor signs the legal document and deposits funds into escrow in a single transaction. The counterparty risk window is zero. <strong>Self-executing escrow:</strong> The LeXscroW contract knows its governing terms and automatically releases funds upon acceptance or returns them if the round closes without allocation. No escrow agent required.</p>
 <p>cyberRaise is the first product built on this foundation. The vision is much larger: a full corporate lifecycle—found, fund, manage, trade—where every legal act and every economic act are fused into a single programmable system. We call it <strong>CorpFi</strong>.</p>
@@ -882,7 +882,7 @@ Leads cyberRaise web app and infrastructure engineering. Background spanning cor
     <div class="section-body">
 <h2 id="s39-9-1-the-twilio-analogy-protocol-as-infrastructure-layer">The Twilio Analogy</h2>
 <p>We provide the infrastructure layer that other companies build on top of, monetizing through implementation fees, protocol royalties, and usage-based revenue. Just as Twilio made telephony programmable, we make corporate securities programmable so that any platform can embed tokenized equity into their product. The protocol is the product. The API is the distribution. We build it once; every platform that integrates it benefits.</p>
-<h2 id=”s40-9-2-revenue-streams”>Revenue Streams</h2>
+<h2 id="s40-9-2-revenue-streams">Revenue Streams</h2>
 <ul>
 <li><p><strong>Whitelabel implementation + royalties:</strong> Bespoke protocol deployments with upfront fees plus ongoing royalties on revenue generated through MetaLeX-integrated systems. See Section 2 for signed engagements.</p></li>
 <li><p><strong>cyberRaise transaction fees:</strong> Pay-as-you-go fees replacing traditional five-to-six-figure law firm bills.</p></li>
@@ -1054,65 +1054,65 @@ and the product is how we intend to operate.</p>
     <div class="section-body">
 <p><em>We hear smart, skeptical questions regularly. Here are our honest answers.</em></p>
 
-<details class=”faq-item”>
-  <summary><span>”Hasn’t this been tried before? STOs failed in 2017–2019.”</span><span class=”faq-chevron”></span></summary>
-  <div class=”faq-body”>
+<details class="faq-item">
+  <summary><span>”Hasn’t this been tried before? STOs failed in 2017–2019.”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
 <p>Yes, and for a specific reason: the first generation started from the token and retrofitted legal compliance. Those tokens carried no legal content and duplicated work the transfer agent was already doing offchain. We start from the opposite end: Delaware corporate law first, token architecture second. CyberCorps doesn’t add a blockchain layer on top of the intermediary chain—it replaces the intermediary chain by making the blockchain the legally authoritative stock ledger. Different product, not a retry.</p>
   </div>
 </details>
 
-<details class=”faq-item”>
-  <summary><span>”Securitize has billions in AUM and BlackRock. How do you compete?”</span><span class=”faq-chevron”></span></summary>
-  <div class=”faq-body”>
+<details class="faq-item">
+  <summary><span>”Securitize has billions in AUM and BlackRock. How do you compete?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
 <p>We don’t compete for the same customers yet. Securitize serves institutional fund products where intermediary infrastructure is a feature. Our target is crypto native private companies where founders already have wallets and prefer permissionless tooling. Securitize’s architecture has a structural ceiling: its tokens carry no per-share metadata, its DS Protocol retains god-mode admin keys that make tokens unsuitable for DeFi collateral, and every new DeFi integration requires individual transfer agent approval—a bottleneck that scales linearly.</p>
   </div>
 </details>
 
-<details class=”faq-item”>
-  <summary><span>”Doesn’t putting stockholder names on a public blockchain create privacy issues?”</span><span class=”faq-chevron”></span></summary>
-  <div class=”faq-body”>
+<details class="faq-item">
+  <summary><span>”Doesn’t putting stockholder names on a public blockchain create privacy issues?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
 <p>Our protocol supports encrypted metadata so PII is only visible to authorized parties. Pre-IPO cyberCERTs can be soulbound, limiting onchain visibility. The broader ecosystem is developing ZK-based privacy solutions architecturally compatible with our model. Our approach is actually superior for stockholder inspection rights under DGCL §220: the stock ledger is onchain and readable, unlike Canton’s architecture where no single node holds the complete ownership graph.</p>
   </div>
 </details>
 
-<details class=”faq-item”>
-  <summary><span>”Aren’t cyberSCRIPs bearer securities? What about AML and sanctions risk?”</span><span class=”faq-chevron”></span></summary>
-  <div class=”faq-body”>
+<details class="faq-item">
+  <summary><span>”Aren’t cyberSCRIPs bearer securities? What about AML and sanctions risk?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
 <p>cyberCERTs are registered instruments—the stock ledger records the holder, and NFT transfer alone doesn’t change registered ownership. cyberSCRIPs, once in ERC-20 form, circulate more like bearer instruments. Our aspiration is for scrip to be used and treated like USDC—we see no principled reason it should be worse, since stablecoins navigate the same bearer-like territory through issuer-level compliance. The protocol accommodates the full spectrum: issuers who want conservative compliance can layer on transfer whitelists, holder count limits, freeze, force transfer, and force burn—even integrating compliance protocols like ERC-3643 if desired. This is determined on an issuer-by-issuer basis. The protocol doesn’t impose a single compliance posture; it supports any posture from permissionless to fully gated. Separately, freeze/force/burn functionality satisfies the SEC custody rule requirements for configurations where custodians remain relevant.</p>
   </div>
 </details>
 
-<details class=”faq-item”>
-  <summary><span>”What if there’s a smart contract bug?”</span><span class=”faq-chevron”></span></summary>
-  <div class=”faq-body”>
+<details class="faq-item">
+  <summary><span>”What if there’s a smart contract bug?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
 <p>Our Material Adverse Exception Events (MAEE) framework addresses this—no competing standard has anything equivalent. The CyberCorps bylaws explicitly define consensus attacks, hard forks, contract bugs, and regulatory orders as MAEEs, and provide that no change arising from an MAEE is given legal effect. This is a legal-layer circuit breaker: if the code fails, the legal framework provides an orderly resolution mechanism.</p>
   </div>
 </details>
 
-<details class=”faq-item”>
-  <summary><span>”Isn’t MetaLeX just becoming the new intermediary?”</span><span class=”faq-chevron”></span></summary>
-  <div class=”faq-body”>
+<details class="faq-item">
+  <summary><span>”Isn’t MetaLeX just becoming the new intermediary?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
 <p>The co-approval upgrade model is the key: we publish new contract implementations, but each cyberCORP decides whether to adopt them. No unilateral pushes, no forced migrations. We are a protocol steward, not a securities intermediary. The walkaway test: if MetaLeX disappeared tomorrow, every cyberCORP and its securities would continue to function on the blockchain.</p>
   </div>
 </details>
 
-<details class=”faq-item”>
-  <summary><span>”Has this model been tested in court?”</span><span class=”faq-chevron”></span></summary>
-  <div class=”faq-body”>
+<details class="faq-item">
+  <summary><span>”Has this model been tested in court?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
 <p>No court has ruled on a DGCL §224 designation of a blockchain as a stock ledger, because no one else has done it. But §224 is broad by design—it permits stock ledgers maintained via “one or more electronic networks or databases, including one or more distributed electronic networks or databases.” Our bylaws implement this statutory authority through standard Delaware corporate instruments that any Delaware court can interpret. If a dispute arose, a court would look at the bylaws, see the designation, and apply standard DGCL principles. The legal risk is less “will a court recognize this” and more “will this specific implementation satisfy the court's expectations”—and we've mapped every functional requirement of §§158, 219, and 224 into the smart contract system precisely for that reason.</p>
   </div>
 </details>
 
-<details class=”faq-item”>
-  <summary><span>”What's your regulatory status? Transfer agent? Broker-dealer?”</span><span class=”faq-chevron”></span></summary>
-  <div class=”faq-body”>
+<details class="faq-item">
+  <summary><span>”What's your regulatory status? Transfer agent? Broker-dealer?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
 <p>Neither, by design. MetaLeX Labs is a technology company that publishes smart contract protocols and legal document templates. We do not maintain custody of securities, execute trades, operate a matching engine, or maintain the authoritative record of ownership for any issuer other than ourselves. Each cyberCORP issuer administers its own stock ledger through its officers and BorgAuth permissions—not MetaLeX. MetaLeX Pro LLP is a separately organized, 100% attorney-owned law firm. If new regulations specifically address onchain stock ledger technology providers, we are well positioned to comply because our architecture already separates protocol stewardship from securities intermediation.</p>
   </div>
 </details>
 
-<details class=”faq-item”>
-  <summary><span>”This only works for Delaware. What about other jurisdictions?”</span><span class=”faq-chevron”></span></summary>
-  <div class=”faq-body”>
+<details class="faq-item">
+  <summary><span>”This only works for Delaware. What about other jurisdictions?”</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
 <p>Delaware is the right starting point: it governs over 65% of Fortune 500 companies and the vast majority of venture-backed startups. But our architecture is jurisdiction-adaptable: the legal instruments (bylaws, COI) are the layer that maps the protocol to a specific jurisdiction’s corporate law, and those can be re-authored while the smart contract infrastructure remains the same. Delaware is the beachhead, not the ceiling.</p>
   </div>
 </details>
@@ -1164,5 +1164,6 @@ and the product is how we intend to operate.</p>
 
 
 
-<!-- deploy:2026-03-30T13:45:39Z -->
+
+<!-- deploy:2026-03-30T13:50:54Z -->
 </html>
