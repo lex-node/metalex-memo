@@ -1076,6 +1076,13 @@ and the product is how we intend to operate.</p>
 </details>
 
 <details class=”faq-item”>
+  <summary><span>”Aren’t cyberSCRIPs bearer securities? What about AML and sanctions risk?”</span><span class=”faq-chevron”></span></summary>
+  <div class=”faq-body”>
+<p>cyberCERTs are registered instruments—the stock ledger records the holder, and NFT transfer alone doesn’t change registered ownership. cyberSCRIPs, once in ERC-20 form, circulate more like bearer instruments. Our aspiration is for scrip to be used and treated like USDC—we see no principled reason it should be worse, since stablecoins navigate the same bearer-like territory through issuer-level compliance. The protocol accommodates the full spectrum: issuers who want conservative compliance can layer on transfer whitelists, holder count limits, freeze, force transfer, and force burn—even integrating compliance protocols like ERC-3643 if desired. This is determined on an issuer-by-issuer basis. The protocol doesn’t impose a single compliance posture; it supports any posture from permissionless to fully gated. Separately, freeze/force/burn functionality satisfies the SEC custody rule requirements for configurations where custodians remain relevant.</p>
+  </div>
+</details>
+
+<details class=”faq-item”>
   <summary><span>”What if there’s a smart contract bug?”</span><span class=”faq-chevron”></span></summary>
   <div class=”faq-body”>
 <p>Our Material Adverse Exception Events (MAEE) framework addresses this—no competing standard has anything equivalent. The CyberCorps bylaws explicitly define consensus attacks, hard forks, contract bugs, and regulatory orders as MAEEs, and provide that no change arising from an MAEE is given legal effect. This is a legal-layer circuit breaker: if the code fails, the legal framework provides an orderly resolution mechanism.</p>
@@ -1090,11 +1097,42 @@ and the product is how we intend to operate.</p>
 </details>
 
 <details class=”faq-item”>
+  <summary><span>”Has this model been tested in court?”</span><span class=”faq-chevron”></span></summary>
+  <div class=”faq-body”>
+<p>No court has ruled on a DGCL §224 designation of a blockchain as a stock ledger, because no one else has done it. But §224 is broad by design—it permits stock ledgers maintained via “one or more electronic networks or databases, including one or more distributed electronic networks or databases.” Our bylaws implement this statutory authority through standard Delaware corporate instruments that any Delaware court can interpret. If a dispute arose, a court would look at the bylaws, see the designation, and apply standard DGCL principles. The legal risk is less “will a court recognize this” and more “will this specific implementation satisfy the court's expectations”—and we've mapped every functional requirement of §§158, 219, and 224 into the smart contract system precisely for that reason.</p>
+  </div>
+</details>
+
+<details class=”faq-item”>
+  <summary><span>”What's your regulatory status? Transfer agent? Broker-dealer?”</span><span class=”faq-chevron”></span></summary>
+  <div class=”faq-body”>
+<p>Neither, by design. MetaLeX Labs is a technology company that publishes smart contract protocols and legal document templates. We do not maintain custody of securities, execute trades, operate a matching engine, or maintain the authoritative record of ownership for any issuer other than ourselves. Each cyberCORP issuer administers its own stock ledger through its officers and BorgAuth permissions—not MetaLeX. MetaLeX Pro LLP is a separately organized, 100% attorney-owned law firm. If new regulations specifically address onchain stock ledger technology providers, we are well positioned to comply because our architecture already separates protocol stewardship from securities intermediation.</p>
+  </div>
+</details>
+
+<details class=”faq-item”>
   <summary><span>”This only works for Delaware. What about other jurisdictions?”</span><span class=”faq-chevron”></span></summary>
   <div class=”faq-body”>
 <p>Delaware is the right starting point: it governs over 65% of Fortune 500 companies and the vast majority of venture-backed startups. But our architecture is jurisdiction-adaptable: the legal instruments (bylaws, COI) are the layer that maps the protocol to a specific jurisdiction’s corporate law, and those can be re-authored while the smart contract infrastructure remains the same. Delaware is the beachhead, not the ceiling.</p>
   </div>
 </details>
+
+<details class="faq-item">
+  <summary><span>"When can investors actually sell? What’s the path to liquidity?"</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+<p>Multiple paths depending on the security type and regulatory posture. For Reg D securities, Rule 144 provides a resale safe harbor after a one-year holding period for non-reporting issuers, subject to conditions including adequate public information and volume limitations. For Reg S, the distribution compliance period is typically one year for equity of non-reporting domestic issuers. The cyberSCRIP layer enables liquid secondary trading once transfer restrictions are lifted—a cyberCERT holder scripifies into ERC-20 tokens that can trade on AMMs, OTC venues, or permissioned DEXes. The issuer controls when to enable transferability. Private securities have always had liquidity constraints. We don’t eliminate them—we make them transparent and enforceable onchain rather than hidden in offchain admin discretion.</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span>"Your revenue is from a handful of deals. How do you get to recurring revenue at scale?"</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+<p>Every cyberCORP deployed is a persistent revenue surface—it generates fees on issuance, corporate actions, scripification, and secondary transfers for the life of the entity. The Twilio analogy is precise: Twilio doesn’t make most of its money from implementation contracts; it makes money from API calls at scale. Our path runs through three channels simultaneously: self-service cyberRaise adoption by crypto native founders (organic, bottlenecked by awareness), whitelabel integrations where partner platforms bring their own deal flow (high-value force multipliers), and Community SAFEs where token communities bring their own distribution (viral, if the Pump pilot validates the model). Each channel feeds the others, and each new cyberCORP permanently expands the protocol’s revenue-generating surface area.</p>
+  </div>
+</details>
+
+    </div>
+  </details>
 
   <details class="section">
     <summary><span class="section-title">13. Next Steps</span><span class="chevron"></span></summary>
@@ -1124,5 +1162,6 @@ and the product is how we intend to operate.</p>
 
 
 
-<!-- deploy:2026-03-30T12:08:26Z -->
+
+<!-- deploy:2026-03-30T13:38:29Z -->
 </html>
