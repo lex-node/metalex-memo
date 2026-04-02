@@ -405,29 +405,23 @@
 <div style="margin:6px 0 28px;overflow-x:auto;">
 <svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;height:auto;font-family:Inter,sans-serif;">
   <!-- Main line -->
-  <line x1="50" y1="40" x2="650" y2="40" stroke="#333" stroke-width="2"/>
-  <line x1="50" y1="40" x2="500" y2="40" stroke="#DAFF00" stroke-width="2"/>
-  <!-- BORG Advisory -->
-  <circle cx="50" cy="40" r="6" fill="#706F68"/>
-  <text x="50" y="70" fill="#A0A098" font-size="14" text-anchor="middle" font-weight="600">BORG</text>
-  <!-- Seed -->
-  <circle cx="200" cy="40" r="8" fill="#DAFF00"/>
-  <text x="200" y="70" fill="#E0E0DC" font-size="14" text-anchor="middle" font-weight="700">Seed $2.75M</text>
-  <text x="200" y="90" fill="#706F68" font-size="14" text-anchor="middle">May 2024</text>
-  <!-- MetaDAO -->
-  <circle cx="350" cy="40" r="10" fill="#DAFF00"/>
-  <circle cx="350" cy="40" r="15" fill="none" stroke="#DAFF00" stroke-width="1" opacity="0.4"/>
-  <text x="350" y="70" fill="#DAFF00" font-size="14" text-anchor="middle" font-weight="700">MetaDAO Deal</text>
-  <!-- Whitelabel -->
-  <circle cx="500" cy="40" r="10" fill="#DAFF00"/>
-  <circle cx="500" cy="40" r="15" fill="none" stroke="#DAFF00" stroke-width="1" opacity="0.4"/>
-  <text x="500" y="70" fill="#DAFF00" font-size="14" text-anchor="middle" font-weight="700">Whitelabel</text>
-  <!-- New Round -->
-  <circle cx="650" cy="40" r="10" fill="none" stroke="#DAFF00" stroke-width="2" stroke-dasharray="4,3"/>
-  <text x="650" y="70" fill="#DAFF00" font-size="14" text-anchor="middle" font-weight="800">New Round</text>
-  <!-- Legend -->
-  <text x="200" y="112" fill="#706F68" font-size="14" text-anchor="middle">&#x25C0; Completed</text>
-  <text x="575" y="112" fill="#706F68" font-size="14" text-anchor="middle">Upcoming &#x25B6;</text>
+  <line x1="80" y1="40" x2="620" y2="40" stroke="#DAFF00" stroke-width="2"/>
+  <!-- Node 1: Seed -->
+  <circle cx="80" cy="40" r="7" fill="#DAFF00"/>
+  <text x="80" y="70" fill="#E0E0DC" font-size="14" text-anchor="middle" font-weight="700">Seed $2.75M</text>
+  <text x="80" y="90" fill="#706F68" font-size="14" text-anchor="middle">May 2024</text>
+  <!-- Node 2: DAO Entities -->
+  <circle cx="260" cy="40" r="7" fill="#DAFF00"/>
+  <text x="260" y="70" fill="#E0E0DC" font-size="14" text-anchor="middle" font-weight="700">DAO Entities</text>
+  <text x="260" y="90" fill="#706F68" font-size="14" text-anchor="middle">Lido, Curve, Yearn</text>
+  <!-- Node 3: cyberRaise / CyberCorps -->
+  <circle cx="440" cy="40" r="7" fill="#DAFF00"/>
+  <text x="440" y="70" fill="#E0E0DC" font-size="14" text-anchor="middle" font-weight="700">cyberRaise / CyberCorps</text>
+  <!-- Node 4: Partnerships (largest, highlighted) -->
+  <circle cx="620" cy="40" r="12" fill="#DAFF00"/>
+  <circle cx="620" cy="40" r="18" fill="none" stroke="#DAFF00" stroke-width="1" opacity="0.4"/>
+  <text x="620" y="70" fill="#DAFF00" font-size="14" text-anchor="middle" font-weight="800">Partnerships</text>
+  <text x="620" y="90" fill="#706F68" font-size="14" text-anchor="middle">MetaDAO, Pump.fun, SPV Platform</text>
 </svg>
 </div>
 
@@ -443,10 +437,9 @@
 <p>A signed, executed engagement under a Master Services Agreement with an international platform building tokenized investment infrastructure for private companies and funds (VC funds, PE funds, single-asset SPVs) through SPV structures. MetaLeX is customizing and whitelabeling the cyberRaise platform and CyberCorps smart contracts for the partner’s use case, with “Powered by MetaLeX protocol” co-branding. The deal is structured so that MetaLeX captures ongoing revenue participation as the partner’s platform grows and generates revenue through MetaLeX-integrated systems. The partner brings their own deal flow and distribution; MetaLeX provides the infrastructure and shares in the economics. If the initial deployment succeeds, the agreement contemplates a broader strategic partnership with MetaLeX as the primary provider of blockchain-based corporate finance infrastructure. This validates the whitelabel thesis: platforms with existing customers license the CyberCorps protocol rather than building from scratch, because the legal-architectural integration cannot be replicated by hiring engineers alone.</p>
 </div>
 
-<div class="callout">
-<p><strong>Pump.fun Community SAFE Pilot: Token-to-Equity Conversion [Upcoming]</strong></p>
-<p>A signed, executed engagement under a Master Services Agreement with the platform behind Pump.fun, the largest token launching and trading platform on Solana. The concept: “Community SAFEs” where token holders convert a project’s own token into equity stakes (SAFEs) in the company behind the project. Both the investment amount and the valuation cap are denominated in the project’s token, not dollars. The token is the currency, not the security. The sequencing matters: the token launches first as a standard community asset with no reference to equity, and only later does the team introduce a structured equity raise. This preserves the token’s non-security status while creating a compliant pathway from community capital to real equity.</p>
-<p>The scope spans both MetaLeX Labs (implementation: customized cyberRaise whitelabel, Solana-to-Base token bridge, zkPassport nationality verification) and MetaLeX Pro LLP (legal: custom token-denominated SAFE based on a modified Y Combinator form, legal opinion on token non-security status, comprehensive regulatory analysis covering Regulation S, Howey, and sufficient decentralization). Tokens bridge from Solana to Base, investors verify non-U.S. status via zkPassport and pass KYC/AML, subscribe through noncustodial escrow on cyberRaise, and receive a cyberCERT embodying the SAFE directly to their wallet. The legal architecture includes investor protections: one-year token treasury lockup, corporate-asset covenants requiring pro rata treatment of token distributions, SPV conversion election for cap table consolidation, and survival clauses through change-of-control events. The pilot covers up to two offerings by up to two pilot entities selected by the platform. If successful, the parties will negotiate a long-term strategic agreement. This is a new go-to-market channel that does not exist anywhere else: community-driven equity fundraising where the token community IS the investor base, and the communities bring their own distribution.</p>
+<div class=”callout”>
+<p><strong>Pump.fun Community SAFE Pilot — Community Equity Channel</strong></p>
+<p>[UPCOMING] Token holders convert a project’s token into equity stakes (SAFEs) in the company behind the project, bridging the gap between token value and enterprise value. Both investment amount and valuation cap denominated in the project’s token. Comprehensive legal memorandum completed covering Reg S, Howey analysis, and sufficient decentralization. If this model works, every token community with a viable project becomes a potential cyberRaise customer, and the communities bring their own distribution. Target launch: [TBD].</p>
 </div>
 
 
@@ -528,10 +521,10 @@
   <details class="section">
     <summary><span class="section-title">5. What We’ve Built</span><span class="chevron"></span></summary>
     <div class="section-body">
-<h2>cyberRaise</h2>
-<p>The wedge product. Noncustodial, wallet-based venture fundraising entirely onchain. Supports SAFE, SAFT, Token Warrant, and SAFTE. Structured rounds with digital escrow, atomic settlement, and automated cyberCERT issuance. The same private key that signs the legal agreement authorizes the payment; the counterparty risk window is zero. LeXscroW escrow automatically releases funds on acceptance or returns them if the round closes. Pay-as-you-go from funds raised, no upfront SaaS fees. Replaces weeks of back-and-forth and five-to-six-figure legal bills.</p>
 <h2>Supporting Infrastructure</h2>
 <p>LeXcheX automates onchain investor verification (accredited investor status for Reg D, nationality verification via zkPassport for Reg S), composable so any dApp can check with a single function call. The cyberCORP dashboard provides a self-maintaining cap table derived entirely from onchain state, with no vendor lock-in. MetaLeX Pro LLP, a 100% attorney-owned law firm, provides the attorney-client privilege layer largely pro bono to cyberRaise users, giving founders both software infrastructure and privileged legal counsel from the same organization.</p>
+<h2>cyberRaise</h2>
+<p>The wedge product. Noncustodial, wallet-based venture fundraising entirely onchain. Supports SAFE, SAFT, Token Warrant, and SAFTE. Structured rounds with digital escrow, atomic settlement, and automated cyberCERT issuance. The same private key that signs the legal agreement authorizes the payment; the counterparty risk window is zero. LeXscroW escrow automatically releases funds on acceptance or returns them if the round closes. Pay-as-you-go from funds raised, no upfront SaaS fees. Replaces weeks of back-and-forth and five-to-six-figure legal bills.</p>
 </div>
   </details>
 
@@ -559,7 +552,7 @@
 <td><strong>Per-Share Metadata</strong></td>
 <td><strong>DeFi Composable</strong></td>
 </tr>
-<tr class="even">
+<tr class="even" style="background:rgba(218,255,0,0.15);font-weight:600;">
 <td>MetaLeX CyberCorps</td>
 <td>Protocol</td>
 <td>Onchain (Bylaws)</td>
@@ -951,5 +944,6 @@ round and outstanding equity awards.</p>
 
 
 
-<!-- deploy:2026-04-01T13:13:05Z -->
+
+<!-- deploy:2026-04-02T23:17:37Z -->
 </html>
