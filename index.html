@@ -422,13 +422,10 @@
     <summary><span class="section-title">3. Our Solutions</span><span class="chevron"></span></summary>
     <div class="section-body">
 <p>MetaLeX inverts the industry approach: instead of starting from a token and adding compliance, cyberCORPs starts from the corporation and builds securities that know what they are. The result is internet capital markets infrastructure where the full corporate lifecycle, from entity formation through fundraising through governance, is native to the chain.</p>
-<p>The protocol sequence: a cyberCORP (onchain entity representation) is deployed, the entity’s governing documents designate the blockchain as the official securities ledger, cyberCERTs are issued from the entity contract as Stock Ledger Entry Tokens, and cyberSCRIPs provide a fungible DeFi-compatible layer derived from those certificates. Each component knows its relationship to the others and can act on that knowledge.</p>
-<h2>cyberCERTs (ERC-721 Stock Ledger Entry Tokens)</h2>
-<p>Each cyberCERT is an ERC-721 NFT that functions as an entry on the entity’s onchain securities ledger. It knows its issuing entity, its series terms, its transfer restrictions, and its governing documents. A fully onchain Base64-encoded SVG visualizes the certificate. NFT transfer alone does not change registered ownership; metadata must be explicitly mutated, maintaining the distinction between token possession and registered ownership that applicable law requires.</p>
-<h2>cyberSCRIPs (ERC-20 Scrip Tokens)</h2>
-<p>cyberSCRIPs are ERC-20 fungible tokens generated from cyberCERTs via Scripification and convertible back via De-Scripification. They are the DeFi-compatible layer: usable in AMMs, lending protocols, and as collateral, while cyberCERTs remain the canonical ownership record. Think of it as the stablecoin model applied to equity: USDC holders have no rights per se, but qualifying clients of Circle can redeem 1:1 for dollars.</p>
-<p>The entity’s governing documents designate the onchain system as the official securities ledger (e.g., for corporations, the stock ledger under DGCL §224). The token <em>is</em> the ledger entry. Holding it makes you the registered owner. Competitors maintain two ledgers that must stay in sync, proving the chain is not the source of truth. We eliminate the reconciliation layer entirely.</p>
-<p>MetaLeX Labs’ own governing documents designate cyberCORPs as our official securities ledger. We issue securities to our own investors through the protocol.</p>
+
+<h2>The Protocol</h2>
+<p>The core legal innovation: the entity’s governing documents designate the onchain system as the official securities ledger (e.g., for corporations, the stock ledger under DGCL §224). The token <em>is</em> the ledger entry. Holding it makes you the registered owner. Competitors maintain two ledgers that must stay in sync, proving the chain is not the source of truth. We eliminate the reconciliation layer entirely. MetaLeX Labs’ own governing documents designate cyberCORPs as our official securities ledger. We issue securities to our own investors through the protocol.</p>
+
 <div style="margin:28px 0 24px;">
 <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:640px;height:auto;font-family:Inter,sans-serif;">
   <!-- Foundation layer -->
@@ -456,10 +453,33 @@
   <text x="320" y="26" fill="#706f68" font-size="14" font-weight="600" text-anchor="middle">scripify &#x2194; de-scripify</text>
 </svg>
 </div>
-<h2>Supporting Infrastructure</h2>
-<p>LeXcheX automates onchain investor verification (accredited investor status for Reg D, nationality verification via zkPassport for Reg S), composable so any dApp can check with a single function call. The cyberCORP dashboard provides a self-maintaining cap table derived entirely from onchain state, with no vendor lock-in. MetaLeX Pro LLP, a 100% attorney-owned law firm, provides the attorney-client privilege layer largely pro bono to cyberRAISE users, giving founders both software infrastructure and privileged legal counsel from the same organization.</p>
-<h2>cyberRAISE</h2>
-<p>The wedge product. Noncustodial, wallet-based venture fundraising entirely onchain. Supports SAFE, SAFT, Token Warrant, and SAFTE. Structured rounds with digital escrow, atomic settlement, and automated cyberCERT issuance. The same private key that signs the legal agreement authorizes the payment; the counterparty risk window is zero. LeXscroW escrow automatically releases funds on acceptance or returns them if the round closes. Pay-as-you-go from funds raised, no upfront SaaS fees. Replaces weeks of back-and-forth and five-to-six-figure legal bills.</p>
+
+<h3>cyberCORP — Onchain Corporate Entity</h3>
+<p>The cyberCORP is the root contract from which everything else derives. It represents the entity itself onchain: identity, officer authorization (via BorgAuth), cap table state, governance permissions, and links to governing documents. Every cyberCERT, every cyberSCRIP, every compliance check traces back to a cyberCORP. Deploying one is the first act of forming an entity in the protocol.</p>
+
+<h3>cyberCERT — Stock Ledger Entry Token (ERC-721)</h3>
+<p>Each cyberCERT is an ERC-721 NFT issued from a cyberCORP that functions as an entry on the entity’s onchain securities ledger. It knows its issuing entity, its series terms, its transfer restrictions, and its governing documents. A fully onchain Base64-encoded SVG visualizes the certificate. NFT transfer alone does not change registered ownership; metadata must be explicitly mutated, maintaining the distinction between token possession and registered ownership that applicable law requires.</p>
+
+<h3>cyberSCRIP — DeFi Composability Layer (ERC-20)</h3>
+<p>cyberSCRIPs are ERC-20 fungible tokens generated from cyberCERTs via Scripification and convertible back via De-Scripification. They are the DeFi-compatible layer: usable in AMMs, lending protocols, and as collateral, while cyberCERTs remain the canonical ownership record. Think of it as the stablecoin model applied to equity: USDC holders have no rights per se, but qualifying clients of Circle can redeem 1:1 for dollars.</p>
+
+<h3>BorgAuth — Onchain Governance Permissions</h3>
+<p>BorgAuth is the hierarchical role-based access control system that maps corporate governance rules onchain. It translates signing authority into spending authority: the same key structure that authorizes a corporate action can execute it atomically. Officer roles, multisig thresholds, and approval workflows are encoded in the contract, not in email threads or board minutes.</p>
+
+<h3>LeXcheX — Composable Investor Verification</h3>
+<p>LeXcheX automates onchain investor verification: accredited investor status for Reg D, nationality verification via zkPassport for Reg S. It is a protocol primitive, not a feature of any single application. Any dApp can check investor qualification with a single function call, making compliance composable across the entire ecosystem.</p>
+
+<h2>Applications</h2>
+<p>The following are first-party applications built on the cyberCORPs protocol, demonstrating what the infrastructure enables. Third parties can build equivalent or entirely different applications on the same primitives.</p>
+
+<h3>cyberRAISE — Onchain Venture Fundraising</h3>
+<p>Noncustodial, wallet-based venture fundraising entirely onchain. Supports SAFE, SAFT, Token Warrant, and SAFTE. Structured rounds with digital escrow, atomic settlement, and automated cyberCERT issuance. The same private key that signs the legal agreement authorizes the payment; the counterparty risk window is zero. LeXscroW escrow automatically releases funds on acceptance or returns them if the round closes. Pay-as-you-go from funds raised, no upfront SaaS fees. Replaces weeks of back-and-forth and five-to-six-figure legal bills.</p>
+
+<h3>Cap Table Dashboard</h3>
+<p>A self-maintaining cap table derived entirely from onchain state. Because cyberCERTs are the securities ledger, the cap table is always current by definition. No manual entry, no reconciliation, no vendor lock-in. Founders see their full capitalization in real time; investors see their holdings across all cyberCORP issuers.</p>
+
+<h3>MetaLeX Pro LLP — Attorney-Client Privilege Layer</h3>
+<p>MetaLeX Pro LLP is a 100% attorney-owned law firm that provides privileged legal counsel largely pro bono to cyberRAISE users. Founders get both software infrastructure and attorney-client privilege from an integrated experience. The firm wraps the protocol, not the other way around.</p>
 </div>
   </details>
 
