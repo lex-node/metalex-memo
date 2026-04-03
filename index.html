@@ -143,8 +143,27 @@
   td { padding: 8px 14px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text); }
   tr:nth-child(even) td { background: rgba(218, 255, 0, 0.03); }
 
-  a { color: var(--neon); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+
+
+  /* Coined terms: accent color + italic, no underline */
+  .coined { color: var(--neon); font-style: italic; }
+
+  /* Links: accent color + subtle underline, not italic */
+  a { color: var(--neon); text-decoration: underline; text-decoration-color: rgba(218, 255, 0, 0.4); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--neon); }
+
+  /* Coined term that is also a link: accent + italic + underline */
+  a.coined { font-style: italic; }
+
+  /* Pullquote */
+  .pullquote {
+    border-left: 4px solid var(--neon);
+    padding-left: 20px;
+    margin: 18px 0;
+    font-style: italic;
+    color: var(--text-mid);
+  }
+
   svg { display: block; margin: 0 auto; }
   hr { border: none; height: 3px; background: var(--neon); margin: 36px 0; border-radius: 2px; }
 
@@ -325,9 +344,10 @@
     <div class="section-body">
 <p>MetaLeX does for companies and their equity what stablecoins did for dollars.</p>
 <p>Our cyberCORPs protocol is a single onchain system where companies form, raise capital, issue securities, manage cap tables, and govern themselves. Each tokenized security "knows" its issuer, its terms, its restrictions, and its governing documents. Capital raises settle atomically, cap tables are self-maintaining, and equity becomes self custodied, composable, and liquid.</p>
-<p>Every other RWA project is <a href="https://x.com/compose/articles/edit/2037986619119337472" target="_blank">intermediary cosplay</a>: transfer agents controlling everything with a smidgen of blockchain. They use what we call <a href="https://x.com/lex_node/status/2033550710017568866" target="_blank">"slop tokenization"</a>: the tokens don't know what they are, and neither does anyone else. Some are illusory contracts. Others are just a way of <em>messaging</em> offchain intermediaries. None put actual assets or settlement onchain. They wave vaguely at securities status while lacking core property rights and corporate finance logic.</p>
-<p>These approaches simply do not and cannot work. Swen Werner, Head of Digital Custody and Payments at State Street, put it best: they are "blockchain theater, a layered architecture that creates a digital version of inefficient loan markets rather than a negotiable securities market. The entire point of a security is that it can be freely traded, without needing the original issuer's permission for every subsequent transfer."</p>
-<p>MetaLeX is different. We are cryptonative and believe in permissionlessness. Our protocol mints constitutive digital securities where the onchain state IS the legal state and the chain's state transition function IS the company's legal state transition function. The blockchain <em>is</em> the transfer agent. We call this CorpFi: DeFi-ready, agentic-friendly, cryptonative corporate finance, truly harnessing the power of autonomous technologies.</p>
+<p>Every other RWA project is <a href="https://x.com/compose/articles/edit/2037986619119337472" target="_blank" class="coined">intermediary cosplay</a>: transfer agents controlling everything with a smidgen of blockchain. They use what we call <a href="https://x.com/lex_node/status/2033550710017568866" target="_blank" class="coined">"slop tokenization"</a>: the tokens don't know what they are, and neither does anyone else. Some are illusory contracts. Others are just a way of <em>messaging</em> offchain intermediaries. None put actual assets or settlement onchain. They wave vaguely at securities status while lacking core property rights and corporate finance logic.</p>
+<p>These approaches simply do not and cannot work. Swen Werner, Head of Digital Custody and Payments at State Street, put it best:</p>
+<div class="pullquote">"Blockchain theater, a layered architecture that creates a digital version of inefficient loan markets rather than a negotiable securities market. The entire point of a security is that it can be freely traded, without needing the original issuer's permission for every subsequent transfer."</div>
+<p>MetaLeX is different. We are cryptonative and believe in permissionlessness. Our protocol mints <span class="coined">constitutive</span> digital securities where the onchain state <em>is</em> the legal state and the chain's state transition function <em>is</em> the company's legal state transition function. The blockchain <em>is</em> the transfer agent. We call this <span class="coined">CorpFi</span>: DeFi-ready, agentic-friendly, cryptonative corporate finance, truly harnessing the power of autonomous technologies.</p>
 <p>As a result, MetaLeX can fully disrupt, disintermediate, and technologically replace:</p>
 <ul>
 <li>securities depositories (DTCC/Cede)</li>
@@ -408,7 +428,7 @@
 <p>Each cyberCERT is an ERC-721 NFT that functions as an entry on the entity’s onchain securities ledger. It knows its issuing entity, its series terms, its transfer restrictions, and its governing documents. A fully onchain Base64-encoded SVG visualizes the certificate. NFT transfer alone does not change registered ownership; metadata must be explicitly mutated, maintaining the distinction between token possession and registered ownership that applicable law requires.</p>
 <h2>cyberSCRIPs (ERC-20 Scrip Tokens)</h2>
 <p>cyberSCRIPs are ERC-20 fungible tokens generated from cyberCERTs via Scripification and convertible back via De-Scripification. They are the DeFi-compatible layer: usable in AMMs, lending protocols, and as collateral, while cyberCERTs remain the canonical ownership record. Think of it as the stablecoin model applied to equity: USDC holders have no rights per se, but qualifying clients of Circle can redeem 1:1 for dollars.</p>
-<p>The entity’s governing documents designate the onchain system as the official securities ledger (e.g., for corporations, the stock ledger under DGCL §224). The token IS the ledger entry. Holding it makes you the registered owner. Competitors maintain two ledgers that must stay in sync, proving the chain is not the source of truth. We eliminate the reconciliation layer entirely.</p>
+<p>The entity’s governing documents designate the onchain system as the official securities ledger (e.g., for corporations, the stock ledger under DGCL §224). The token <em>is</em> the ledger entry. Holding it makes you the registered owner. Competitors maintain two ledgers that must stay in sync, proving the chain is not the source of truth. We eliminate the reconciliation layer entirely.</p>
 <p>MetaLeX Labs’ own governing documents designate cyberCORPs as our official securities ledger. We issue securities to our own investors through the protocol.</p>
 <div style="margin:28px 0 24px;">
 <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:640px;height:auto;font-family:Inter,sans-serif;">
@@ -956,5 +976,6 @@ round and outstanding equity awards.</p>
 
 
 
-<!-- deploy:2026-04-03T13:47:02Z -->
+
+<!-- deploy:2026-04-03T14:00:55Z -->
 </html>
