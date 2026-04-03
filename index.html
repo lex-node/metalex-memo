@@ -323,6 +323,48 @@
   details.sub-section[open] .sub-chevron::before { transform: rotate(-45deg); }
   details.sub-section[open] .sub-chevron::after { transform: rotate(45deg); }
 
+  /* Sub-sub-section accordion (third nesting level, e.g. individual apps) */
+  details.sub-sub-section {
+    margin: 6px 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg-card);
+    transition: border-color 0.2s;
+  }
+  details.sub-sub-section[open] {
+    border-color: var(--neon-border);
+    background: var(--bg-alt);
+  }
+  details.sub-sub-section summary {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px;
+    cursor: pointer; list-style: none;
+    font-size: 14px; font-weight: 600; color: var(--bright);
+    user-select: none;
+  }
+  details.sub-sub-section summary::-webkit-details-marker { display: none; }
+  details.sub-sub-section summary::marker { display: none; content: ""; }
+  details.sub-sub-section summary:hover { color: var(--neon); }
+  details.sub-sub-section .sub-sub-body {
+    padding: 4px 14px 14px;
+    border-top: 1px solid var(--border);
+    animation: fadeIn 0.2s ease;
+  }
+  details.sub-sub-section .sub-sub-chevron {
+    width: 12px; height: 12px; flex-shrink: 0; margin-left: 10px;
+    position: relative;
+  }
+  details.sub-sub-section .sub-sub-chevron::before, details.sub-sub-section .sub-sub-chevron::after {
+    content: ''; position: absolute;
+    width: 5px; height: 1.5px; background: var(--text-light);
+    top: 50%; border-radius: 1px;
+    transition: transform 0.2s ease;
+  }
+  details.sub-sub-section .sub-sub-chevron::before { left: 1px; transform: rotate(45deg); }
+  details.sub-sub-section .sub-sub-chevron::after { right: 1px; transform: rotate(-45deg); }
+  details.sub-sub-section[open] .sub-sub-chevron::before { transform: rotate(-45deg); }
+  details.sub-sub-section[open] .sub-sub-chevron::after { transform: rotate(45deg); }
+
   /* Mobile table scroll wrapper */
   .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 14px 0 18px; }
   .table-scroll table { margin: 0; min-width: 580px; }
@@ -343,7 +385,7 @@
     .cover { padding: 40px 20px 30px; }
     body { font-size: 12px; background: white; color: #1a1a1a; }
     summary { color: #1a1a1a !important; }
-    .chevron, .sub-chevron, .faq-chevron { display: none; }
+    .chevron, .sub-chevron, .faq-chevron, .sub-sub-chevron { display: none; }
     table { page-break-inside: avoid; font-size: 12px; }
   }
 
@@ -380,8 +422,8 @@
 
 <div class="accordion-container">
   <div class="controls">
-    <button onclick="document.querySelectorAll('details.section, details.sub-section, details.faq-item').forEach(d=>d.open=true)">Expand All</button>
-    <button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=false);document.querySelectorAll('details.sub-section').forEach(d=>d.open=false);document.querySelectorAll('details.faq-item').forEach(d=>d.open=false)">Collapse All</button>
+    <button onclick="document.querySelectorAll('details.section, details.sub-section, details.faq-item, details.sub-sub-section').forEach(d=>d.open=true)">Expand All</button>
+    <button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=false);document.querySelectorAll('details.sub-section').forEach(d=>d.open=false);document.querySelectorAll('details.faq-item').forEach(d=>d.open=false);document.querySelectorAll('details.sub-sub-section').forEach(d=>d.open=false)">Collapse All</button>
   </div>
 
   <details class="section">
@@ -534,7 +576,7 @@
 <p>BorgAuth is the hierarchical role-based access control system that maps corporate governance rules onchain. It encodes officer roles, multisig thresholds, spending limits, and approval workflows directly in the entity contract, so that onchain permissions mirror the corporate authority structure defined in the governing documents.</p>
 
 <h3>MetaVesT — Token Vesting and Lockup</h3>
-<p>MetaVesT is a token vesting and lockup protocol for ERC-20 tokens, built for tokenized securities and corporate finance. It supports vesting allocations, token options, and restricted token awards, each with configurable vesting and unlock schedules, cliff credits, milestone-based releases with onchain condition contracts, and internal transfer abilities. Each MetaVesT framework operates on a per-entity basis — an authority (such as a cyberCORP) creates and administers grants for individual recipients. Amendments to grant terms require either grantee consent or majority-in-governing-power approval from grantees holding the same token, ensuring that vesting terms cannot be changed unilaterally. Deployed for BORG-era clients and now integrated into the cyberCORPs stack.</p>
+<p>Token vesting and lockup for ERC-20 tokens, designed for instruments that have legal significance — not just emission schedules. Unlike standard vesting protocols, MetaVesT implements real corporate finance grant types: token options where the grantee pays an exercise price to the granting entity onchain, restricted token awards where the entity can repurchase unvested tokens at a defined price, and standard vesting allocations. Amendments to grant terms require either individual grantee consent or majority-in-governing-power approval from grantees holding the same token — mirroring the investor consent mechanics of actual equity plans. Each framework is administered by an authority (such as a cyberCORP), with optional DAO-level oversight that can impose conditions on authority actions.</p>
 </div>
 </details>
 
@@ -543,21 +585,41 @@
 <div class="sub-section-body">
 <p>The following are first-party applications built on the cyberCORPs protocol, demonstrating what the infrastructure enables. Third parties can build equivalent or entirely different applications on the same primitives.</p>
 
-<h3>cyberRAISE — Onchain Venture Fundraising</h3>
+<details class="sub-sub-section">
+<summary><span>cyberRAISE — Onchain Venture Fundraising</span><span class="sub-sub-chevron"></span></summary>
+<div class="sub-sub-body">
 <p>Wallet-based venture fundraising with noncustodial escrow and atomic settlement. Supports both structured rounds (target raise amount, round period, min/max ticket size, standard terms across investors) and ticket-by-ticket deals. Structured rounds offer two admission modes: First-Come-First-Served (tickets close automatically on funding) and Bid/Approve (investors submit expressions of interest backed by escrowed funds, founders select among bids, unaccepted EOIs refund automatically). Publicly advertised rounds are discoverable through the cyberRAISE marketplace and gated by LeXcheX accredited investor verification for SEC Rule 506(c) compliance. Privately advertised rounds can be gated with secret links or passphrases.</p>
 <p>Each closed ticket issues a cyberCERT to the investor’s wallet, with optional PII encryption so personally identifiable details are visible only to the issuing cyberCORP’s officers. Supported instruments include SAFEs, SAFTs, SAFTEs, Token Warrants, and SAFE + Token Warrant combos, each available in Reg D and Reg S versions. NVCA-standard priced preferred stock rounds are next on the roadmap. Founders manage rounds from a real-time dashboard; investors track holdings across all cyberCORP issuers in an integrated portfolio view.</p>
+</div>
+</details>
 
-<h3>cyberSign — Wallet-Native Agreement Signing</h3>
+<details class="sub-sub-section">
+<summary><span>cyberSign — Wallet-Native Agreement Signing</span><span class="sub-sub-chevron"></span></summary>
+<div class="sub-sub-body">
 <p>Wallet-based legal agreement signing with onchain proof. Upload a PDF, assign contract roles, store structured parameters onchain via EIP-712 typed data signatures, and each party signs with their Ethereum wallet. The signed agreement is stored on IPFS; proof is anchored onchain and persists independently of MetaLeX. Supports pseudonymous or identified parties. Originally built as a module of cyberRAISE, now released as a <a href="https://app.metalex.tech/cybersign/create" target="_blank">standalone tool</a>.</p>
+</div>
+</details>
 
-<h3>cyberCORPs Hub — Entity and Securities Management</h3>
+<details class="sub-sub-section">
+<summary><span>cyberCORPs Hub — Entity and Securities Management</span><span class="sub-sub-chevron"></span></summary>
+<div class="sub-sub-body">
 <p>The primary management interface for the cyberCORPs protocol. Form and manage a legal entity onchain, administer tokenized securities (issue, transfer, scripify), and maintain a cap table derived entirely from onchain state. Because cyberCERTs are the securities ledger, the cap table is always current by definition. Founders see their full capitalization in real time; investors see their holdings across all cyberCORP issuers.</p>
+</div>
+</details>
 
-<h3>LeXcheX — Composable Investor Verification</h3>
+<details class="sub-sub-section">
+<summary><span>LeXcheX — Composable Investor Verification</span><span class="sub-sub-chevron"></span></summary>
+<div class="sub-sub-body">
 <p>Automates onchain investor verification: accredited investor status for Reg D, nationality verification via zkPassport for Reg S. Any dApp can check investor qualification with a single function call, making compliance composable across the ecosystem.</p>
+</div>
+</details>
 
-<h3>LiquiLeX — Liquidity for Tokenized Securities</h3>
+<details class="sub-sub-section">
+<summary><span>LiquiLeX — Liquidity for Tokenized Securities</span><span class="sub-sub-chevron"></span></summary>
+<div class="sub-sub-body">
 <p>[UPCOMING] Native liquidity infrastructure for securities issued through the cyberCORPs protocol. Details forthcoming.</p>
+</div>
+</details>
 </div>
 </details>
 
