@@ -421,7 +421,9 @@
   <details class="section">
     <summary><span class="section-title">3. Our Solutions</span><span class="chevron"></span></summary>
     <div class="section-body">
-<p>MetaLeX inverts the industry approach: instead of starting from a token and adding compliance, cyberCORPs starts from the corporation and builds securities that know what they are. The result is internet capital markets infrastructure where the full corporate lifecycle, from entity formation through fundraising through governance, is native to the chain.</p>
+<p>MetaLeX's innovations rest on a set of legal and technical methodologies we call <span class="coined">cybernetic law</span>: law designed for the age of autonomous systems. The core insight is that a private key can serve simultaneously as a legal signing authority and a spending authority. When the same cryptographic act that authorizes a payment also executes a binding legal agreement, you eliminate the gap between legal intent and economic settlement. The counterparty risk window collapses to zero.</p>
+<p>Every component of the cyberCORPs protocol is built around this insight. Atomic sign-and-close, self executing escrow, entity-to-entity composability, and securities that know what they are all flow from the unification of signing authority and spending authority in a single private key.</p>
+<p>Where the rest of the industry starts from a token and adds compliance, MetaLeX starts from the corporation and builds securities that are natively onchain. The result is internet capital markets infrastructure where the full corporate lifecycle, from entity formation through fundraising through governance, is native to the chain.</p>
 
 <h2>The Protocol</h2>
 <p>The core legal innovation: the entity’s governing documents designate the onchain system as the official securities ledger (e.g., for corporations, the stock ledger under DGCL §224). The token <em>is</em> the ledger entry. Holding it makes you the registered owner. Competitors maintain two ledgers that must stay in sync, proving the chain is not the source of truth. We eliminate the reconciliation layer entirely. MetaLeX Labs’ own governing documents designate cyberCORPs as our official securities ledger. We issue securities to our own investors through the protocol.</p>
@@ -475,11 +477,17 @@
 <h3>cyberRAISE — Onchain Venture Fundraising</h3>
 <p>Noncustodial, wallet-based venture fundraising entirely onchain. Supports SAFE, SAFT, Token Warrant, and SAFTE. Structured rounds with digital escrow, atomic settlement, and automated cyberCERT issuance. The same private key that signs the legal agreement authorizes the payment; the counterparty risk window is zero. LeXscroW escrow automatically releases funds on acceptance or returns them if the round closes. Pay-as-you-go from funds raised, no upfront SaaS fees. Replaces weeks of back-and-forth and five-to-six-figure legal bills.</p>
 
-<h3>Cap Table Dashboard</h3>
-<p>A self-maintaining cap table derived entirely from onchain state. Because cyberCERTs are the securities ledger, the cap table is always current by definition. No manual entry, no reconciliation, no vendor lock-in. Founders see their full capitalization in real time; investors see their holdings across all cyberCORP issuers.</p>
+<h3>cyberSign — Wallet-Native Agreement Signing</h3>
+<p>Wallet-based legal agreement signing with onchain proof. Upload a PDF, assign contract roles (e.g. "Purchaser", "Seller"), store structured parameters onchain via EIP-712 typed data signatures, and each party signs with their Ethereum wallet. The signed agreement is stored on IPFS; proof is anchored onchain. More verifiable than DocuSign: verification relies on public blockchain infrastructure, not a vendor's private servers. If MetaLeX ceased operating, the signature proof would still exist. Supports pseudonymous signing (wallet address only) or identified parties. Originally built as a module of cyberRAISE, now released as a <a href="https://app.metalex.tech/cybersign/create" target="_blank">standalone tool</a>.</p>
+
+<h3>cyberCORPs Hub — Entity and Securities Management</h3>
+<p>The primary management application for the cyberCORPs protocol. Form and manage a legal entity onchain, administer tokenized securities (issue, transfer, scripify), and maintain a cap table derived entirely from onchain state. Because cyberCERTs are the securities ledger, the cap table is always current by definition. No manual entry, no reconciliation, no vendor lock-in. Founders see their full capitalization in real time; investors see their holdings across all cyberCORP issuers.</p>
 
 <h3>MetaLeX Pro LLP — Attorney-Client Privilege Layer</h3>
 <p>MetaLeX Pro LLP is a 100% attorney-owned law firm that provides privileged legal counsel largely pro bono to cyberRAISE users. Founders get both software infrastructure and attorney-client privilege from an integrated experience. The firm wraps the protocol, not the other way around.</p>
+
+<h3>LiquiLeX — Liquidity for Tokenized Securities</h3>
+<p>[UPCOMING] Liquidity solutions for tokenized securities issued through the cyberCORPs protocol. Once securities exist as cyberCERTs and cyberSCRIPs onchain, they need native liquidity infrastructure, not retrofitted centralized order books. Details forthcoming.</p>
 </div>
   </details>
 
