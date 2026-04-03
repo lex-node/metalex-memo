@@ -481,7 +481,11 @@
 <p>The following are first-party applications built on the cyberCORPs protocol, demonstrating what the infrastructure enables. Third parties can build equivalent or entirely different applications on the same primitives.</p>
 
 <h3>cyberRAISE — Onchain Venture Fundraising</h3>
-<p>Noncustodial, wallet-based venture fundraising entirely onchain. Supports SAFE, SAFT, Token Warrant, and SAFTE. Structured rounds with digital escrow, atomic settlement, and automated cyberCERT issuance. The same private key that signs the legal agreement authorizes the payment; the counterparty risk window is zero. LeXscroW escrow automatically releases funds on acceptance or returns them if the round closes. Pay-as-you-go from funds raised, no upfront SaaS fees. Replaces weeks of back-and-forth and five-to-six-figure legal bills.</p>
+<p>Noncustodial, wallet-based venture fundraising entirely onchain. The same private key that signs the legal agreement authorizes the payment; the counterparty risk window is zero. No email accounts, no sales calls, no platform KYC gate — wallet connect only. Pay-as-you-go from funds raised, no upfront SaaS fees. Replaces weeks of back-and-forth and five-to-six-figure legal bills.</p>
+<p>cyberRAISE v2, launched January 2026, introduced full structured round support. Founders set a target raise amount, round period, min/max ticket size, and standard terms across all investors. Two investor admission modes: First-Come-First-Served (tickets close automatically on funding) and Bid/Approve (investors submit expressions of interest backed by escrowed funds, founders select among bids on a rolling basis or at round close, with automatic refund of unaccepted EOIs). Exploding offers allow investors to bid above the max ticket size with short-fuse expiration windows. Ticket-by-ticket mode remains available for one-off angel deals.</p>
+<p>Publicly advertised rounds are discoverable through the cyberRAISE marketplace, compliant with SEC Rule 506(c) via LeXcheX accredited investor verification. Privately advertised rounds can be gated with secret links or passphrases.</p>
+<p>Each closed ticket automatically issues a cyberCERT digital security to the investor's wallet, with optional PII encryption so personally identifiable details are visible only to the issuing cyberCORP's officers. Founders manage their round from a real-time dashboard showing pending EOIs, closed tickets, and aggregate progress. Investors track holdings across all cyberCORP issuers in an integrated portfolio view.</p>
+<p>Supported instruments include SAFEs, SAFTs, SAFTEs, Token Warrants, and SAFE + Token Warrant combos, each available in Reg D and Reg S versions. Custom instruments are supported on request. NVCA-standard priced preferred stock rounds are next on the roadmap.</p>
 
 <h3>cyberSign — Wallet-Native Agreement Signing</h3>
 <p>Wallet-based legal agreement signing with onchain proof. Upload a PDF, assign contract roles (e.g. "Purchaser", "Seller"), store structured parameters onchain via EIP-712 typed data signatures, and each party signs with their Ethereum wallet. The signed agreement is stored on IPFS; proof is anchored onchain. More verifiable than DocuSign: verification relies on public blockchain infrastructure, not a vendor's private servers. If MetaLeX ceased operating, the signature proof would still exist. Supports pseudonymous signing (wallet address only) or identified parties. Originally built as a module of cyberRAISE, now released as a <a href="https://app.metalex.tech/cybersign/create" target="_blank">standalone tool</a>.</p>
@@ -516,7 +520,19 @@
 <div class="metric"><div class="num">&#x2192;</div><div class="lbl"><a href="https://dune.com/metalex_labs/cybercorps" target="_blank" style="color:var(--neon)">Live Dashboard</a></div></div>
 </div>
 
-<p>cyberRAISE is the primary application driving direct adoption. Founders connect a wallet, configure a round (SAFE, SAFT, Token Warrant, or SAFTE), and raise capital with noncustodial escrow, atomic settlement, and automated cyberCERT issuance — no sales call required. Self-service adoption is growing among cryptonative founders, driven by @lex_node distribution and word-of-mouth from closed deals. Pay-as-you-go from funds raised replaces five-to-six-figure legal bills.</p>
+<p><strong>cyberRAISE adoption.</strong> cyberRAISE v2 launched in January 2026 with full structured round support, publicly advertised rounds, and an investor marketplace. Self-service adoption is growing among cryptonative founders raising SAFEs and SAFTs, driven by @lex_node distribution and word-of-mouth from closed deals. Multiple rounds have been configured and funded through the platform since launch, with capital raised via noncustodial escrow settling in minutes rather than the days-to-weeks typical of traditional wire-based closings.</p>
+
+<p><strong>cyberSign.</strong> Live as a <a href="https://app.metalex.tech/cybersign/create" target="_blank">standalone tool</a>. Used for wallet-native agreement signing across cyberRAISE deals and independent legal agreements.</p>
+
+<p><strong>cyberCORPs Hub.</strong> Live as the primary management interface for all cyberCORP entities. Cap tables derived entirely from onchain state with zero manual entry.</p>
+
+<p><strong>Live protocol status:</strong></p>
+<ul>
+<li><p>cyberCORPs protocol live on Ethereum mainnet, Arbitrum, and Base.</p></li>
+<li><p>MetaLeX Labs' own governing documents are being finalized to designate cyberCORPs as our official securities ledger.</p></li>
+<li><p>cyberRAISE v2 launched with full structured round support, digital escrow, and automated investor portfolio management.</p></li>
+<li><p>CyberAgreementRegistry live: an onchain legal document anchoring system using EIP-712 typed data signatures.</p></li>
+</ul>
 
 <h2>Protocol &amp; Partnerships</h2>
 
