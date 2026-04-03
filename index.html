@@ -897,26 +897,37 @@ enhancements, whitelabel deployment tooling), and ecosystem growth
   </details>
 
   <details class="section">
-    <summary><span class="section-title">7. Regulatory Tailwinds</span><span class="chevron"></span></summary>
+    <summary><span class="section-title">7. Legal Background</span><span class="chevron"></span></summary>
     <div class="section-body">
-<details class="sub-section">
-<summary><span>SEC Joint Staff Statement (January 28, 2026)</span><span class="sub-chevron"></span></summary>
+<p>Securities tokenization is not primarily a technology problem. It is a legal architecture problem. The token’s relationship to the underlying legal instrument — whether the token <em>is</em> the security, <em>represents</em> the security, or merely <em>communicates about</em> the security — determines everything: what rights the holder actually has, whether intermediaries can be eliminated, and whether DeFi composability is possible. Most tokenization projects get this wrong because they start from token engineering and retrofit legal meaning. MetaLeX starts from the law.</p>
+
+<details class="sub-section" open>
+<summary><span>Five Models of Securities Tokenization</span><span class="sub-chevron"></span></summary>
 <div class="sub-section-body">
-<p>The SEC’s Divisions of Corporation Finance, Investment Management, and Trading and Markets jointly confirmed that federal securities laws apply to tokenized securities regardless of format, distinguishing between issuer-sponsored and third-party tokenization models. cyberCORPs is natively issuer-sponsored (the corporation itself is onchain, securities are issued from the entity contract), and the statement’s emphasis on economic substance over technological format validates our approach.</p>
+<p>Not all "tokenized securities" are the same. The following taxonomy, developed by MetaLeX founder Gabriel Shapiro, maps the design space:</p>
+<p><strong>1. Certificate tokens.</strong> The token functions as a digital securities certificate — the onchain equivalent of a paper stock certificate. This is the most intuitively cryptonative model: paper certificates couldn’t scale, so the industry centralized everything; blockchain certificates could scale, so we can decentralize again. The problem is UCC Article 8. The model commercial law governing securities transfers, adopted in every U.S. state, only recognizes <em>paper</em> certificates. The Federal ESIGN Act, which generally mandates equivalence between paper and electronic records, is explicitly carved out for UCC-governed securities transactions. Wyoming is a partial exception (its corporate code allows "certificate tokens"), but the interplay with Article 8 for secondary transfers and secured lending is legally untested. Building production infrastructure on a legal theory that requires law reform is aspirational, not responsible.</p>
+<p><strong>2. Stock ledger entry tokens.</strong> The token <em>is</em> the entry on the issuer’s stock ledger for an uncertificated security. The corporation’s governing documents designate the onchain system as the official stock ledger under DGCL §224. Holding the token makes you the stockholder of record. This sidesteps the UCC Article 8 certificate gap entirely — uncertificated securities don’t require certificates, so the Article 8 paper-only limitation is irrelevant. The token carries per-entry metadata (stockholder name, share class/series, restriction legends, acquisition date, officer authorizations) that satisfies DGCL §§158, 219, and 224. <strong>This is the cyberCORPs model.</strong></p>
+<p><strong>3. Instruction tokens.</strong> Under UCC Article 8, an "instruction" is a notification to the issuer of uncertificated securities directing a change in registered ownership. The token transfer constitutes such an instruction. The UCC’s Permanent Editorial Board (PEB) has endorsed this approach. But the securities themselves are not tokenized: the definitive ledger remains offchain, the issuer retains discretion to reject the instruction, and settlement may lag. The token is a carrier pigeon, not a security. This is where most "tokenized securities" actually operate today, often without realizing it.</p>
+<p><strong>4. Control agreement tokens.</strong> The sophisticated cousin of the instruction model. The issuer has committed in advance to follow the token holder’s instructions without further consent from the registered owner, via a "control agreement" under UCC §8-106(c)(2). More bearer-like than the instruction model. But the token still isn’t the security; it represents contract rights regarding the security. Actual registered ownership may still lag the token transaction. cyberSCRIP tokens can accommodate this model as a secondary composability layer, while cyberCERTs remain the authoritative ledger entries.</p>
+<p><strong>5. Synthetic.</strong> Perpetual futures, tokenized structured notes, security-based swaps. Not "tokenization of securities" in any meaningful sense — it’s the creation of new financial instruments providing synthetic exposure to a reference asset. The holder of a perp on AAPL doesn’t own Apple shares.</p>
+<p>There is also a degenerate category — <strong>souvenir tokens</strong> or <strong>slop</strong> — where the blockchain is nominally used as a "ledger" but no legal instrument makes the onchain state authoritative. The token reflects an offchain record but nothing gives it legal force. Most major tokenization platforms today produce tokens that sit somewhere between instruction tokens and souvenirs.</p>
 </div>
 </details>
 
-<details class="sub-section">
-<summary><span>Pro-Innovation Executive Order</span><span class="sub-chevron"></span></summary>
-<div class="sub-section-body">
-<p>Executive Order 14178 signals sustained policy support for blockchain native financial infrastructure.</p>
-</div>
-</details>
-
-<details class="sub-section">
+<details class="sub-section" open>
 <summary><span>Statutory Foundations</span><span class="sub-chevron"></span></summary>
 <div class="sub-section-body">
-<p>Multiple jurisdictions provide statutory authority for blockchain-based securities ledgers. For Delaware corporations, DGCL §224 permits stock ledgers maintained through "one or more electronic networks or databases." Wyoming, the Marshall Islands, and other jurisdictions offer parallel frameworks for different entity types. cyberCORPs is the first system to implement these statutory authorities as production infrastructure, with Delaware as the initial beachhead.</p>
+<p><strong>DGCL §224.</strong> The 2017 amendments to the Delaware General Corporation Law explicitly authorized blockchain-based stock ledgers. §224 permits stock ledgers maintained through "one or more electronic networks or databases, including one or more distributed electronic networks or databases." The requirements are functional: the ledger must be convertible to paper form, enable stockholder list preparation per §§219 and 220, and record the information specified in §§156 (partly paid shares), 159 (collateral transfers), 217(a) (fiduciary/pledgor voting), and 218 (voting trusts). cyberCORPs is the first system to map every one of these functional requirements into a production smart contract system. Delaware is the initial beachhead — the majority of U.S. venture-backed startups and most public companies are incorporated there.</p>
+<p><strong>UCC Articles 8 and 12.</strong> The PEB’s forthcoming report on tokenization of securities transfers under the UCC establishes that tokens functioning as instructions (model 3) or control agreements (model 4) can operate within existing commercial law rules without further statutory reform. The 2022 UCC Amendments (Article 12) created a framework for "controllable electronic records" that provides the commercial law infrastructure for token-based transfer mechanisms. cyberCORPs’ stock ledger entry model (model 2) operates upstream of these transfer mechanisms: the token is the ledger entry itself, not a communication about the ledger entry, so the instruction/control agreement framework governs the <em>secondary composability layer</em> (cyberSCRIP) rather than the <em>primary ownership record</em> (cyberCERT).</p>
+<p><strong>Multi-jurisdiction frameworks.</strong> Wyoming, the Marshall Islands, and the Cayman Islands all offer statutory frameworks compatible with blockchain-native entity and securities infrastructure. The governing documents (bylaws, operating agreements, partnership agreements) are the layer that maps the protocol to a specific entity type and jurisdiction’s law. Those can be re-authored while the smart contract infrastructure remains the same. The Chainbound/Umia engagement (see Section 4) uses a Cayman Islands segregated portfolio company structure, validating the protocol’s jurisdiction adaptability.</p>
+</div>
+</details>
+
+<details class="sub-section" open>
+<summary><span>Regulatory Tailwinds</span><span class="sub-chevron"></span></summary>
+<div class="sub-section-body">
+<p><strong>SEC Joint Staff Statement (January 28, 2026).</strong> The SEC’s Divisions of Corporation Finance, Investment Management, and Trading and Markets jointly confirmed that federal securities laws apply to tokenized securities regardless of format, distinguishing between issuer-sponsored and third-party tokenization models. cyberCORPs is natively issuer-sponsored (the corporation itself is onchain, securities are issued from the entity contract), and the statement’s emphasis on economic substance over technological format validates our approach.</p>
+<p><strong>Pro-Innovation Executive Order.</strong> Executive Order 14178 signals sustained policy support for blockchain native financial infrastructure.</p>
 </div>
 </details>
 </div>
