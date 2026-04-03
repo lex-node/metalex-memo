@@ -280,6 +280,49 @@
   details.faq-item[open] .faq-chevron::before { transform: rotate(-45deg); }
   details.faq-item[open] .faq-chevron::after { transform: rotate(45deg); }
 
+  /* Sub-section accordion (nested within top-level sections) */
+  details.sub-section {
+    margin: 18px 0 6px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--bg-card);
+    transition: border-color 0.2s;
+  }
+  details.sub-section:first-of-type { margin-top: 12px; }
+  details.sub-section[open] {
+    border-color: var(--neon-border);
+    background: var(--bg-alt);
+  }
+  details.sub-section summary {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 18px;
+    cursor: pointer; list-style: none;
+    font-size: 16px; font-weight: 700; color: var(--neon);
+    user-select: none;
+  }
+  details.sub-section summary::-webkit-details-marker { display: none; }
+  details.sub-section summary::marker { display: none; content: ""; }
+  details.sub-section summary:hover { color: var(--bright); }
+  details.sub-section .sub-section-body {
+    padding: 4px 18px 18px;
+    border-top: 1px solid var(--border);
+    animation: fadeIn 0.2s ease;
+  }
+  details.sub-section .sub-chevron {
+    width: 15px; height: 15px; flex-shrink: 0; margin-left: 10px;
+    position: relative;
+  }
+  details.sub-section .sub-chevron::before, details.sub-section .sub-chevron::after {
+    content: ''; position: absolute;
+    width: 7px; height: 1.5px; background: var(--neon);
+    top: 50%; border-radius: 1px;
+    transition: transform 0.2s ease;
+  }
+  details.sub-section .sub-chevron::before { left: 1px; transform: rotate(45deg); }
+  details.sub-section .sub-chevron::after { right: 1px; transform: rotate(-45deg); }
+  details.sub-section[open] .sub-chevron::before { transform: rotate(-45deg); }
+  details.sub-section[open] .sub-chevron::after { transform: rotate(45deg); }
+
   /* Mobile table scroll wrapper */
   .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 14px 0 18px; }
   .table-scroll table { margin: 0; min-width: 580px; }
@@ -300,7 +343,7 @@
     .cover { padding: 40px 20px 30px; }
     body { font-size: 12px; background: white; color: #1a1a1a; }
     summary { color: #1a1a1a !important; }
-    .chevron { display: none; }
+    .chevron, .sub-chevron, .faq-chevron { display: none; }
     table { page-break-inside: avoid; font-size: 12px; }
   }
 
@@ -315,6 +358,8 @@
     .metrics-grid { grid-template-columns: 1fr; }
     .callout { padding: 14px 16px; }
     h2 { font-size: 16px; }
+    details.sub-section summary { padding: 10px 14px; font-size: 15px; }
+    .sub-section-body { padding: 4px 14px 14px; }
     svg { max-width: 100% !important; height: auto !important; }
   }
   @media (min-width: 701px) and (max-width: 960px) {
@@ -335,8 +380,8 @@
 
 <div class="accordion-container">
   <div class="controls">
-    <button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=true)">Expand All</button>
-    <button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=false)">Collapse All</button>
+    <button onclick="document.querySelectorAll('details.section, details.sub-section, details.faq-item').forEach(d=>d.open=true)">Expand All</button>
+    <button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=false);document.querySelectorAll('details.sub-section').forEach(d=>d.open=true);document.querySelectorAll('details.faq-item').forEach(d=>d.open=false)">Collapse All</button>
   </div>
 
   <details class="section">
@@ -431,7 +476,9 @@
 <p>Atomic sign-and-close, self executing escrow, entity-to-entity composability, and securities that know what they are all flow from collapsing legal execution and economic settlement into a single cryptographic act.</p>
 
 
-<h2>The Protocol</h2>
+<details class="sub-section" open>
+<summary><span>The Protocol</span><span class="sub-chevron"></span></summary>
+<div class="sub-section-body">
 <p>The foundational legal architecture: the entity’s governing documents designate the onchain system as the official securities ledger (e.g., for corporations, the stock ledger under DGCL §224). Each token’s onchain metadata — stockholder name, share count, class/series, transfer restrictions — constitutes the ledger entry that satisfies statutory requirements. Registered ownership is recorded in the metadata, not determined by token possession alone. The token <em>is</em> the ledger, not a pointer to one. Competitors maintain two ledgers that must stay in sync, proving the chain is not the source of truth. We eliminate the reconciliation layer entirely.</p>
 
 <div style="margin:28px 0 24px;">
@@ -476,13 +523,17 @@
 
 <h3>MetaVesT — Token Vesting and Lockup</h3>
 <p>MetaVesT is a token vesting and lockup protocol for ERC-20 tokens, built for tokenized securities and corporate finance. It supports vesting allocations, token options, and restricted token awards, each with configurable vesting and unlock schedules, cliff credits, milestone-based releases with onchain condition contracts, and internal transfer abilities. Each MetaVesT framework operates on a per-entity basis — an authority (such as a cyberCORP) creates and administers grants for individual recipients. Amendments to grant terms require either grantee consent or majority-in-governing-power approval from grantees holding the same token, ensuring that vesting terms cannot be changed unilaterally. Deployed for BORG-era clients and now integrated into the cyberCORPs stack.</p>
+</div>
+</details>
 
-<h2>Applications</h2>
+<details class="sub-section" open>
+<summary><span>Applications</span><span class="sub-chevron"></span></summary>
+<div class="sub-section-body">
 <p>The following are first-party applications built on the cyberCORPs protocol, demonstrating what the infrastructure enables. Third parties can build equivalent or entirely different applications on the same primitives.</p>
 
 <h3>cyberRAISE — Onchain Venture Fundraising</h3>
 <p>Wallet-based venture fundraising with noncustodial escrow and atomic settlement. Supports both structured rounds (target raise amount, round period, min/max ticket size, standard terms across investors) and ticket-by-ticket deals. Structured rounds offer two admission modes: First-Come-First-Served (tickets close automatically on funding) and Bid/Approve (investors submit expressions of interest backed by escrowed funds, founders select among bids, unaccepted EOIs refund automatically). Publicly advertised rounds are discoverable through the cyberRAISE marketplace and gated by LeXcheX accredited investor verification for SEC Rule 506(c) compliance. Privately advertised rounds can be gated with secret links or passphrases.</p>
-<p>Each closed ticket issues a cyberCERT to the investor's wallet, with optional PII encryption so personally identifiable details are visible only to the issuing cyberCORP's officers. Supported instruments include SAFEs, SAFTs, SAFTEs, Token Warrants, and SAFE + Token Warrant combos, each available in Reg D and Reg S versions. NVCA-standard priced preferred stock rounds are next on the roadmap. Founders manage rounds from a real-time dashboard; investors track holdings across all cyberCORP issuers in an integrated portfolio view.</p>
+<p>Each closed ticket issues a cyberCERT to the investor’s wallet, with optional PII encryption so personally identifiable details are visible only to the issuing cyberCORP’s officers. Supported instruments include SAFEs, SAFTs, SAFTEs, Token Warrants, and SAFE + Token Warrant combos, each available in Reg D and Reg S versions. NVCA-standard priced preferred stock rounds are next on the roadmap. Founders manage rounds from a real-time dashboard; investors track holdings across all cyberCORP issuers in an integrated portfolio view.</p>
 
 <h3>cyberSign — Wallet-Native Agreement Signing</h3>
 <p>Wallet-based legal agreement signing with onchain proof. Upload a PDF, assign contract roles, store structured parameters onchain via EIP-712 typed data signatures, and each party signs with their Ethereum wallet. The signed agreement is stored on IPFS; proof is anchored onchain and persists independently of MetaLeX. Supports pseudonymous or identified parties. Originally built as a module of cyberRAISE, now released as a <a href="https://app.metalex.tech/cybersign/create" target="_blank">standalone tool</a>.</p>
@@ -495,11 +546,16 @@
 
 <h3>LiquiLeX — Liquidity for Tokenized Securities</h3>
 <p>[UPCOMING] Native liquidity infrastructure for securities issued through the cyberCORPs protocol. Details forthcoming.</p>
+</div>
+</details>
 
-<h2>Legal Support</h2>
-
+<details class="sub-section" open>
+<summary><span>Legal Support</span><span class="sub-chevron"></span></summary>
+<div class="sub-section-body">
 <h3>MetaLeX Pro LLP — Attorney-Client Privilege Layer</h3>
 <p>MetaLeX Pro LLP is a 100% attorney-owned law firm that provides privileged legal counsel largely pro bono to cyberRAISE users. Founders get both software infrastructure and attorney-client privilege from an integrated experience. The firm wraps the protocol, not the other way around.</p>
+</div>
+</details>
 </div>
   </details>
 
@@ -509,7 +565,9 @@
 
 <p>The cyberCORPs protocol is live and generating revenue across two complementary vectors: direct usage of MetaLeX’s own applications, and protocol-level partnerships where third parties build on or license the infrastructure.</p>
 
-<h2>Our Apps</h2>
+<details class="sub-section" open>
+<summary><span>Our Apps</span><span class="sub-chevron"></span></summary>
+<div class="sub-section-body">
 
 <div class="metrics-grid">
 <div class="metric"><div class="num">66</div><div class="lbl">cyberCORPs Formed</div></div>
@@ -520,9 +578,13 @@
 <div class="metric"><div class="num">&#x2192;</div><div class="lbl"><a href="https://dune.com/metalex_labs/cybercorps" target="_blank" style="color:var(--neon)">Live Dashboard</a></div></div>
 </div>
 
-<p>All first-party applications described in Section 3 are live in production. cyberRAISE v2 shipped in January 2026. Self-service adoption is growing among cryptonative founders, driven by @lex_node distribution and word-of-mouth from closed deals. Capital raised through the platform settles in minutes via noncustodial escrow — compared to the days-to-weeks typical of traditional wire-based closings. cyberSign is live as a <a href="https://app.metalex.tech/cybersign/create" target="_blank">standalone tool</a> and in use across cyberRAISE deals and independent agreements. The CyberAgreementRegistry anchors legal documents onchain using EIP-712 typed data signatures. MetaLeX Labs' own governing documents are being finalized to designate cyberCORPs as our official securities ledger — we issue securities to our own investors through the protocol.</p>
+<p>All first-party applications described in Section 3 are live in production. cyberRAISE v2 shipped in January 2026. Self-service adoption is growing among cryptonative founders, driven by @lex_node distribution and word-of-mouth from closed deals. Capital raised through the platform settles in minutes via noncustodial escrow — compared to the days-to-weeks typical of traditional wire-based closings. cyberSign is live as a <a href="https://app.metalex.tech/cybersign/create" target="_blank">standalone tool</a> and in use across cyberRAISE deals and independent agreements. The CyberAgreementRegistry anchors legal documents onchain using EIP-712 typed data signatures. MetaLeX Labs’ own governing documents are being finalized to designate cyberCORPs as our official securities ledger — we issue securities to our own investors through the protocol.</p>
+</div>
+</details>
 
-<h2>Whitelabel / Partner Apps</h2>
+<details class="sub-section" open>
+<summary><span>Whitelabel / Partner Apps</span><span class="sub-chevron"></span></summary>
+<div class="sub-section-body">
 
 <p>Four signed, revenue-generating engagements validate the protocol-level thesis: that cyberCORPs infrastructure can be licensed, customized, and embedded by third-party platforms, each bringing their own deal flow and distribution.</p>
 
@@ -578,6 +640,8 @@
 
 <h3>Prior Track Record</h3>
 <p>Before pivoting to cyberCORPs, MetaLeX built its reputation and revenue through BORG (cyBernetic ORGanization) advisory and smart contract deployments for major DAO-adjacent protocols including Lido, Everclear, ZKsync, Neutron, Curve, and Yearn. This revenue-generating work built the smart contract infrastructure (BorgAuth, LeXscroW, MetaVesT, borg-core) and team capabilities that cyberCORPs now repurposes for the much larger corporate securities market. The technology stack didn’t change — the target market did.</p>
+</div>
+</details>
 
     </div>
   </details>
