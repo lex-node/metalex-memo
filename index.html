@@ -27,6 +27,9 @@
     --text-mid: #A0A098;
     --text-light: #706F68;
     --bright: #f2f2f2;
+    --blue: #33B0FF;
+    --blue-dim: rgba(51, 176, 255, 0.15);
+    --blue-border: rgba(51, 176, 255, 0.25);
     --border: rgba(242, 242, 242, 0.08);
   }
 
@@ -123,7 +126,7 @@
   .section-title { flex: 1; }
 
 
-  h3 { font-size: 16px; font-weight: 700; color: var(--bright); margin: 20px 0 8px; }
+  h3 { font-size: 16px; font-weight: 700; color: var(--blue); margin: 20px 0 8px; }
   p { margin-bottom: 12px; text-align: justify; hyphens: auto; }
   ul, ol { margin: 0 0 12px 22px; }
   li { margin-bottom: 5px; }
@@ -332,14 +335,14 @@
     transition: border-color 0.2s;
   }
   details.sub-sub-section[open] {
-    border-color: var(--neon-border);
+    border-color: var(--blue-border);
     background: var(--bg-alt);
   }
   details.sub-sub-section summary {
     display: flex; align-items: center; justify-content: space-between;
     padding: 10px 14px;
     cursor: pointer; list-style: none;
-    font-size: 14px; font-weight: 600; color: var(--bright);
+    font-size: 14px; font-weight: 600; color: var(--blue);
     user-select: none;
   }
   details.sub-sub-section summary::-webkit-details-marker { display: none; }
@@ -356,7 +359,7 @@
   }
   details.sub-sub-section .sub-sub-chevron::before, details.sub-sub-section .sub-sub-chevron::after {
     content: ''; position: absolute;
-    width: 5px; height: 1.5px; background: var(--text-light);
+    width: 5px; height: 1.5px; background: var(--blue);
     top: 50%; border-radius: 1px;
     transition: transform 0.2s ease;
   }
