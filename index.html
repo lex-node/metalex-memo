@@ -620,7 +620,8 @@
 <details class="sub-sub-section">
 <summary><span>LiquiLeX — Liquidity for Tokenized Securities</span><span class="sub-sub-chevron"></span></summary>
 <div class="sub-sub-body">
-<p>[UPCOMING] Native liquidity infrastructure for securities issued through the cyberCORPs protocol. Details forthcoming.</p>
+<p>[UPCOMING] AMM-based liquidity infrastructure for tokenized securities issued through the cyberCORPs protocol. cyberSCRIPs are ERC-20s — they can trade on automated market makers natively, without centralized order books or intermediary matching engines.</p>
+<p>MetaLeX will dogfood LiquiLeX with its own stock: the first equity natively trading on Ethereum, using a Rule 144 resale path for minority holders after the applicable holding period. This reference implementation seeds a liquidity program for promising startups that MetaLeX onboards through the cyberCORPs protocol, and for startups tokenized via the whitelabel partner's SPV structures (see Section 4), with MetaLeX sharing in trading fees as the underlying infrastructure provider.</p>
 </div>
 </details>
 </div>
@@ -933,6 +934,16 @@ enhancements, whitelabel deployment tooling), and ecosystem growth
 <p><strong>Pro-Innovation Executive Order.</strong> Executive Order 14178 signals sustained policy support for blockchain native financial infrastructure.</p>
 </div>
 </details>
+
+<details class="sub-section">
+<summary><span>Regulatory Status</span><span class="sub-chevron"></span></summary>
+<div class="sub-section-body">
+<p>MetaLeX Labs is a technology company that publishes smart contract protocols, legal document templates, and application interfaces. It does not maintain custody of securities, execute trades on behalf of users, operate a matching engine, or maintain the authoritative record of ownership for any issuer other than itself. Each cyberCORP issuer administers its own stock ledger through its officers and BorgAuth permissions. MetaLeX Pro LLP is a separately organized, 100% attorney-owned law firm.</p>
+<p>This architecture is designed to fall outside the definitions of broker-dealer and securities exchange under the Securities Exchange Act of 1934. The emerging regulatory consensus supports this position. In August 2025, a16z and the DeFi Education Fund jointly submitted a <a href="https://www.sec.gov/files/ctf-written-a16z-def-safe-harbor-proposal-applications-081325.pdf" target="_blank">safe harbor proposal</a> to SEC Commissioner Hester Peirce, arguing that noncustodial application interfaces — those that do not hold user funds, exercise discretion, or make investment recommendations — should be exempt from broker-dealer registration, even when the underlying protocols enable trading of tokenized securities. The proposal's criteria map directly to MetaLeX's architecture: noncustodial, nondiscretionary, no matching engine, no order book.</p>
+<p>The precedents reinforce this. The SEC closed its investigation into Uniswap Labs in February 2025 without filing charges, after previously alleging the Uniswap protocol was an unregistered securities exchange and the interface an unregistered broker. Uniswap's <a href="https://blog.uniswap.org/wells-notice-response.pdf" target="_blank">Wells response</a> argued that autonomous protocol software does not meet the statutory definitions of exchange or broker — an argument the SEC ultimately did not contest in court. The Coinbase Wallet broker claim was dismissed by the court at the pleading stage. The Biden-era DeFi broker reporting rule was revoked by Congress in April 2025. SEC Chairman Atkins has directed staff to develop a "conditional exemptive relief framework" for onchain products and services.</p>
+<p>MetaLeX's position is stronger than a general-purpose DEX because cyberCORPs is an issuer-side protocol, not a trading venue. The protocol helps companies form, issue securities, and manage cap tables. Secondary trading, when it occurs via cyberSCRIP on existing DeFi infrastructure, happens on third-party venues — MetaLeX does not operate the trading venue any more than Delaware's Division of Corporations operates the NYSE. If new regulations specifically address onchain stock ledger technology providers, MetaLeX is well positioned to comply because its architecture already separates protocol stewardship from securities intermediation.</p>
+</div>
+</details>
 </div>
   </details>
 
@@ -1089,6 +1100,7 @@ round and outstanding equity awards.</p>
 <p>The whitelabel pipeline expands beyond the initial signed engagement, with additional platform integrations bringing their own deal flow and distribution into the cyberCORPs ecosystem.</p>
 <p>cyberRAISE self-service adoption grows among cryptonative founders raising SAFEs and SAFTs, driven by @lex_node distribution and word-of-mouth from closed deals.</p>
 <p>We ship NVCA-standard priced round support, expanding cyberRAISE from SAFEs and SAFTs to full preferred stock financing with onchain cap table management, board consent flows, and automated waterfall calculations.</p>
+<p>LiquiLeX launches with MetaLeX's own stock as the first equity trading on an AMM natively on Ethereum, using Rule 144 for minority holder resales. From this reference implementation, we build a liquidity program for startups onboarded through the cyberCORPs protocol and for startups tokenized via the whitelabel partner's SPV structures, with shared trading fee economics.</p>
 <p>Early exploration of the public company path: what does it look like to maintain a cyberCORPs securities ledger for an entity with hundreds or thousands of holders, potentially including listed securities?</p>
 <p>This capital funds the transition from live protocol with signed deals to scaled infrastructure with recurring revenue.</p>
 </div>
@@ -1151,7 +1163,7 @@ round and outstanding equity awards.</p>
 <details class="faq-item">
   <summary><span>"What's your regulatory status? Transfer agent? Broker-dealer?"</span><span class="faq-chevron"></span></summary>
   <div class="faq-body">
-<p>Neither, by design. MetaLeX Labs is a technology company that publishes smart contract protocols and legal document templates. We do not maintain custody of securities, execute trades, operate a matching engine, or maintain the authoritative record of ownership for any issuer other than ourselves. Each cyberCORP issuer administers its own stock ledger through its officers and BorgAuth permissions—not MetaLeX. MetaLeX Pro LLP is a separately organized, 100% attorney-owned law firm. If new regulations specifically address onchain stock ledger technology providers, we are well positioned to comply because our architecture already separates protocol stewardship from securities intermediation.</p>
+<p>Neither, by design. See Section 7 (Legal Background — Regulatory Status) for the full analysis. The short version: MetaLeX is a technology company, not a securities intermediary. Each cyberCORP issuer administers its own stock ledger. The emerging regulatory consensus — including the a16z/DEF safe harbor proposal and the SEC's closure of the Uniswap investigation — supports the position that noncustodial protocol infrastructure and application interfaces are not broker-dealers or exchanges.</p>
   </div>
 </details>
 
