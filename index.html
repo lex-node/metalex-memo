@@ -435,9 +435,9 @@
 <p>MetaLeX does for companies and their equity what stablecoins did for dollars.</p>
 <p>Our <a href="https://github.com/MetaLex-Tech/cybercorps-contracts" target="_blank">cyberCORPs protocol</a> is a cohesive onchain system where companies form, raise capital, issue securities, manage cap tables, and govern themselves. Each tokenized security "knows" its issuer, its terms, its restrictions, and its governing documents. Capital raises settle atomically, cap tables are self-maintaining, and equity becomes self custodied, composable, and liquid.</p>
 <p>The protocol is live and generating revenue. Three signed, revenue-generating engagements and one upcoming pilot span custom protocol deployments (MetaDAO, Chainbound/Umia), an enterprise whitelabel integration with ongoing revenue participation, and a community equity pilot. Major DAOs including Lido, Curve, Yearn, and ZKsync used our predecessor smart contract infrastructure. This raise will be conducted through cyberRAISE, and MetaLeX Labs will be the first company to tokenize its full cap table and trade its own equity via LiquiLeX.</p>
-<p>Every other RWA project is <a href="https://x.com/lex_node/status/2038003451003547956" target="_blank" class="coined">intermediary cosplay</a>: transfer agents controlling everything with a smidgen of blockchain. They use what we call <a href="https://x.com/lex_node/status/2033550710017568866" target="_blank" class="coined">"slop tokenization"</a>: the tokens don't know what they are, and neither does anyone else. Some are illusory contracts. Others are just a way of <em>messaging</em> offchain intermediaries. None put actual assets or settlement onchain. They wave vaguely at securities status while lacking core property rights and corporate finance logic.</p>
-<p>These approaches simply do not and cannot work. Swen Werner, Head of Digital Custody and Payments at State Street, put it best when he said that these systems are <a href="https://swenldn.substack.com/p/damls-canton-network-doesnt-tokenize" target="_blank">"blockchain theater...a digital version of inefficient loan markets rather than a negotiable securities market. The entire point of a security is that it can be freely traded, without needing the original issuer's permission for every subsequent transfer."</a></p>
-<p>MetaLeX is different. We are cryptonative and believe in permissionlessness. Our protocol mints <span class="coined">constitutive</span> digital securities where the onchain state <em>is</em> the legal state and the chain's state transition function <em>is</em> the company's legal state transition function. The blockchain <em>is</em> the transfer agent. We call this <a href="https://metalex.substack.com/p/the-metalex-securities-tokenization" target="_blank" class="coined">CorpFi</a>: DeFi-ready, agentic-friendly, cryptonative corporate finance, truly harnessing the power of autonomous technologies.</p>
+<p>The dominant RWA approach is <a href="https://x.com/lex_node/status/2038003451003547956" target="_blank" class="coined">intermediary cosplay</a>: transfer agents controlling everything with a smidgen of blockchain. They use what we call <a href="https://x.com/lex_node/status/2033550710017568866" target="_blank" class="coined">"slop tokenization"</a>: the tokens carry no onchain data that third parties or protocols can permissionlessly read and compose with. No issuer identity, no governing documents, no series terms, no restriction legends. Some are illusory contracts. Others are just a way of <em>messaging</em> offchain intermediaries. None put actual assets or settlement onchain. They wave vaguely at securities status while lacking core property rights and corporate finance logic.</p>
+<p>These approaches simply do not and cannot work. Swen Werner, former Head of Digital Custody and Payments at State Street, put it best when he said that these systems are <a href="https://swenldn.substack.com/p/damls-canton-network-doesnt-tokenize" target="_blank">"blockchain theater...a digital version of inefficient loan markets rather than a negotiable securities market. The entire point of a security is that it can be freely traded, without needing the original issuer's permission for every subsequent transfer."</a></p>
+<p>MetaLeX is different. We are cryptonative and believe in permissionlessness. Our protocol does not require intermediaries, but it can accommodate them; issuers choose their own compliance and custody posture. Our protocol mints <span class="coined">constitutive</span> digital securities where the onchain state <em>is</em> the legal state and the chain's state transition function <em>is</em> the company's legal state transition function. The blockchain <em>is</em> the transfer agent. We call this <a href="https://metalex.substack.com/p/the-metalex-securities-tokenization" target="_blank" class="coined">CorpFi</a>: DeFi-ready, agentic-friendly, cryptonative corporate finance, truly harnessing the power of autonomous technologies.</p>
 <p>As a result, MetaLeX can fully disrupt, disintermediate, and technologically replace:</p>
 <ul>
 <li>securities depositories (DTCC/Cede)</li>
@@ -780,7 +780,7 @@ enhancements, whitelabel deployment tooling), and ecosystem growth
 <details class="sub-section">
 <summary><span>Everyone Else Builds Pointer Tokens</span><span class="sub-chevron"></span></summary>
 <div class="sub-section-body">
-<p>Every major competitor starts from token engineering and retrofits legal compliance. Their tokens don’t know what they are—not what entity issued them, what documents govern them, or what series terms define their economic rights. We start from corporate law and build outward.</p>
+<p>Every major competitor starts from token engineering and retrofits legal compliance. Their tokens carry none of the onchain data needed for permissionless composability: not what entity issued them, what documents govern them, or what series terms define their economic rights. We start from corporate law and build outward.</p>
 <div class="table-scroll">
 <table>
 <colgroup>
@@ -851,7 +851,7 @@ enhancements, whitelabel deployment tooling), and ecosystem growth
 </tbody>
 </table>
 </div>
-<p>Collectively these competitors administer tens of billions in tokenized assets. But all share the same architectural blind spot: their tokens don’t know what they are, and their blockchains aren’t the source of truth.</p>
+<p>Collectively these competitors administer tens of billions in tokenized assets. But all share the same architectural blind spot: their tokens carry no composable onchain data — no issuer, no terms, no restrictions — and their blockchains aren’t the source of truth.</p>
 
 <div style="margin:28px 0 24px;">
 <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;height:auto;font-family:Inter,sans-serif;">
@@ -890,7 +890,7 @@ enhancements, whitelabel deployment tooling), and ecosystem growth
   <text x="540" y="210" fill="#a0a098" font-size="14" text-anchor="middle">= the securities ledger</text>
   <!-- Direct ownership callout -->
   <text x="540" y="256" fill="#daff00" font-size="16" font-weight="700" text-anchor="middle">Direct ownership</text>
-  <text x="540" y="284" fill="#706f68" font-size="14" text-anchor="middle">No intermediaries. No admin keys.</text>
+  <text x="540" y="284" fill="#706f68" font-size="12" text-anchor="middle">No required intermediaries. Admin functions limitable and renounceable.</text>
 </svg>
 </div>
 </div>
@@ -900,6 +900,7 @@ enhancements, whitelabel deployment tooling), and ecosystem growth
 <summary><span>The Moat</span><span class="sub-chevron"></span></summary>
 <div class="sub-section-body">
 <p>Our competitive advantage is the fusion of legal architecture with protocol design. Replicating the cyberCORPs technology without the corresponding legal framework (bylaws, Certificate of Incorporation, Scrip Token Terms of Service) produces a token with no constitutive effect. The legal architecture requires the simultaneous ability to author corporate and securities instruments and design smart contract systems. This combination cannot be staffed by hiring a lawyer and an engineer separately; it requires practitioners who operate across both domains in a single integrated design process.</p>
+<p>The protocol is intermediary-optional, not intermediary-hostile. Issuers can integrate transfer agents, custodians, and compliance providers where their regulatory posture requires it. The difference is that the architecture works without them.</p>
 </div>
 </details>
 </div>
@@ -1129,7 +1130,7 @@ round and outstanding equity awards.</p>
 <details class="faq-item">
   <summary><span>"Securitize has billions in AUM and BlackRock. How do you compete?"</span><span class="faq-chevron"></span></summary>
   <div class="faq-body">
-<p>We don’t compete for the same customers yet. Securitize serves institutional fund products where intermediary infrastructure is a feature. Our target is cryptonative private companies where founders already have wallets and prefer permissionless tooling. Securitize’s tokens carry no per-share metadata, its DS Protocol retains god-mode admin keys unsuitable for DeFi collateral, and every new DeFi integration requires individual transfer agent approval, a bottleneck that scales linearly.</p>
+<p>We don’t compete for the same customers yet. Securitize serves institutional fund products where intermediary infrastructure is a feature. Our target is cryptonative private companies where founders already have wallets and prefer permissionless tooling. Securitize’s tokens carry no per-share metadata, its DS Protocol retains platform-level admin overrides that cannot be scoped or renounced by the issuer, and every new DeFi integration requires individual transfer agent approval, a bottleneck that scales linearly.</p>
   </div>
 </details>
 
@@ -1158,6 +1159,14 @@ round and outstanding equity awards.</p>
   <summary><span>"Isn’t MetaLeX just becoming the new intermediary?"</span><span class="faq-chevron"></span></summary>
   <div class="faq-body">
 <p>The co-approval upgrade model is the key: we publish new contract implementations, but each cyberCORP decides whether to adopt them. No unilateral pushes, no forced migrations. We are a protocol steward, not a securities intermediary. The walkaway test: if MetaLeX disappeared tomorrow, every cyberCORP and its securities would continue to function on the blockchain.</p>
+  </div>
+</details>
+
+<details class="faq-item">
+  <summary><span>"Does MetaLeX have admin keys? Can it work with intermediaries?"</span><span class="faq-chevron"></span></summary>
+  <div class="faq-body">
+<p>Yes to both. The protocol includes admin functions (freeze, force transfer, force burn, metadata mutation) because securities regulation requires them in certain configurations. The difference is how they are structured. Each admin function is independently scopeable, limitable, and permanently renounceable at the smart contract level. An issuer can deploy with full admin controls for a regulated custody configuration, then progressively limit or renounce functions as the security's compliance posture evolves. Competitors bake admin override into the platform layer where it cannot be renounced; we bake it into the issuer layer where the issuer controls the dial.</p>
+<p>Similarly, the protocol is intermediary-optional. An issuer that wants or needs a transfer agent, custodian, or compliance provider can integrate one. The freeze and force transfer functions exist precisely to support custodial and regulated configurations. The architectural distinction is that intermediaries are not required by default. The protocol functions end to end without them, and the issuer decides where on the spectrum from fully permissionless to fully gated their securities should sit.</p>
   </div>
 </details>
 
